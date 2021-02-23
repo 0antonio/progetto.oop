@@ -9,5 +9,5 @@ public class ProgettoOopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProgettoOopApplication.class, args);
 	}
-
+	
 }
