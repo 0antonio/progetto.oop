@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RestController {
-	@RequestMapping(value="/products")
+	@RequestMapping(value="/progetto")
 	public ResponseEntity<Object> prova(){
-		return 1;
+		return 2;
 	}
 
 }
