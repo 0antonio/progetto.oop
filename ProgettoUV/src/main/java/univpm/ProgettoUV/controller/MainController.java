@@ -9,8 +9,10 @@ import univpm.ProgettoUV.model.*;
 
 @RestController
 public class MainController {
-	@GetMapping(value="/città/{namecity}",produces = "application/json")
-	public Object exampleMethod(@PathVariable("namecity") String namecity) {
-		return APIcoordinates.Getcoordinates(namecity);
+	@GetMapping(value="/città",produces = "application/json")
+	public Object exampleMethod(
+			@RequestParam("lon") float lon,
+			@RequestParam("lat") float lat) {
+		return APICoordinates.getCoordinates(lon, lat);
 	}
 }
