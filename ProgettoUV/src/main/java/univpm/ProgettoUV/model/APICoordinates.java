@@ -108,6 +108,12 @@ public class APICoordinates {
 		if (lon == 0) throw new WrongCoordinatesException();
 		return lon;
 	}
+	public static JSONArray getValues(String name, String country) throws WrongCoordinatesException{
+		double lat = APICoordinates.getCitylat(APICoordinates.caricaArray(),name,country);
+		double lon = APICoordinates.getCitylat(APICoordinates.caricaArray(),name,country);
+		
+		return APICoordinates.getCoordinates(lat,lon);
+	}
 	
 }
  
