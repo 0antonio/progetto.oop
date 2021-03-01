@@ -18,6 +18,7 @@ public class MainController {
 		double lat = APICoordinates.getCitylat(APICoordinates.caricaArray(),name,country);
 		double lon = APICoordinates.getCitylat(APICoordinates.caricaArray(),name,country);
 		
+		//return  APICoordinates.getCoordinates(lat,lon).size();
 		return APICoordinates.getCoordinates(lat,lon);
 		
 	}

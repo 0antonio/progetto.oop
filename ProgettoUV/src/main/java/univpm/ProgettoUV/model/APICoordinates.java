@@ -17,10 +17,12 @@ public class APICoordinates {
 	
 	public static JSONArray getCoordinates(double lat,double lon) {
 		String url = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat="+lat+"&lon="+lon+"&appid=67d40513b0e3e715b6cec6f7e02d354d"; 
+		 //url = "http://api.openweathermap.org/data/2.5/uvi/history?lat="+lat+"&lon="+lon+"&appid=67d40513b0e3e715b6cec6f7e02d354d"; 
 		//api.openweathermap.org/geo/1.0/direct?q="+nome+"&limit=50&appid=67d40513b0e3e715b6cec6f7e02d354d
 		 String data = "";
 		 String line = "";
 		 JSONObject obj = null;
+		 JSONArray arr = null;
 		try {
 			
 			URLConnection openConnection = new URL(url).openConnection();
@@ -38,15 +40,15 @@ public class APICoordinates {
 			   in.close();
 			 }
 			obj = (JSONObject) JSONValue.parseWithException(data);	//parse JSON Array
-			
+			arr =(JSONArray) obj.get("list");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		JSONArray arr =(JSONArray) obj.get("list");
 		
 	 return arr;
+
 	}
 	
 	public static JSONArray caricaArray() {
