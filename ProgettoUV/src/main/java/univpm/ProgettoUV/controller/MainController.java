@@ -1,7 +1,5 @@
 package univpm.ProgettoUV.controller;
 
- 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -23,6 +21,7 @@ import univpm.ProgettoUV.stats.Stats;
 
 @RestController
 public class MainController {
+
     @GetMapping(value = "/nomeCittà", produces = "application/json")
     public String exampleMethod(@RequestParam("name") String name, @RequestParam("country") String country)
             throws WrongCoordinatesException {
@@ -146,3 +145,5 @@ public class MainController {
 
     }
 }
+
+
