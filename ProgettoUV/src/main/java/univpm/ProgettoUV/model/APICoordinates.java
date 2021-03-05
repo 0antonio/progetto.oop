@@ -72,6 +72,26 @@ public class APICoordinates {
 	}
 	
 	
+	public static String getCityname(JSONArray ja,String lat,String lon) {
+		//Get city object within list
+		String name="";
+		for(int i =0; i<ja.size(); i++) {
+			
+			JSONObject cityObject = (JSONObject) ja.get(i);
+			JSONObject coordObject = (JSONObject) cityObject.get("coord");
+			String latitudine=String.valueOf(coordObject.get("lat"));
+			String longitudine=String.valueOf(coordObject.get("lon"));
+			
+			if(latitudine.equals(lat)) {
+				if(longitudine.equals(lon)) {
+                  name = (String) cityObject.get("name");  
+				}
+			}
+		} 
+		return name;
+	}
+	
+	
 	public static double getCitylat(JSONArray ja,String nameCity,String country) throws WrongCoordinatesException {
 		//Get city object within list
 		double lat=0;
@@ -89,6 +109,26 @@ public class APICoordinates {
 		if (lat == 0 ) throw new WrongCoordinatesException();
 		return lat;
 	}
+	
+	public static Long getCityId(JSONArray ja,String lat,String lon) {
+		
+		long id=0;
+		for(int i =0; i<ja.size(); i++) {
+			
+			JSONObject cityObject = (JSONObject) ja.get(i);
+			JSONObject coordObject = (JSONObject) cityObject.get("coord");
+			String latitudine=String.valueOf(coordObject.get("lat"));
+			String longitudine=String.valueOf(coordObject.get("lon"));
+			
+			if(latitudine.equals(lat)) {
+				if(longitudine.equals(lon)) {
+                  id = (Long) cityObject.get("id");  
+				}
+			}
+		} 
+		return id;
+	}
+	
 	
 	public static double getCitylon(JSONArray ja,String nameCity,String country) throws WrongCoordinatesException {
 		//Get city object within list

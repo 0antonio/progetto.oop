@@ -5,8 +5,7 @@ package univpm.ProgettoUV.controller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
- 
+import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.model.*;
+import univpm.ProgettoUV.stats.Stats;
 
  
 
@@ -52,44 +52,46 @@ public class MainController {
     }
 
  
-
-    @GetMapping(value = "/coorCittà", produces = "application/json")
-    public JSONArray restituisciElenco(@RequestParam("lat") String lat, @RequestParam("lon") String lon)
-            throws WrongCoordinatesException {
-        String message = "";
-        String[] listLat = lat.split(",");
-        String[] listLon = lon.split(",");
-        JSONArray out = new JSONArray(), value = new JSONArray();
-        JSONObject tmp = new JSONObject();
-
- 
-
-        int i = 0;
-        for (String latElement : listLat) {
-            String lonElement = listLon[i];
-            i = i++;
-
- 
-
-            // conversione a double
-            double latitudine = Double.parseDouble(latElement);
-            double longitudine = Double.parseDouble(lonElement);
-
- 
-
-            message = latitudine + " , " + longitudine ; // ci devo mettere nome città e country
     
-            value = APICoordinates.getCoordinates(latitudine, longitudine);
-            tmp.put(message, value);
-            out.add(tmp);
+    @GetMapping(value = "/coorCittà", produces = "application/json")
+    public JSONArray restituisciElenco(@RequestParam("lat") String lati, @RequestParam("lon") String longi)
+            throws WrongCoordinatesException {
+        long dtmax= 1999999999;
+    	
+    	String message = "";
+        
+        String[] lat = lati.split(",");
+        String[] lon = longi.split(",");
+        JSONArray out = new JSONArray(), value = new JSONArray();
+        
+        for(int i =0;i<lat.length;i++) {
+        	 String lonElement = lon[i];
+        	 String latElement = lat[i];
+       
+
+        String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
+        long id=APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
+        Vector <Double> uv = Stats.getUv(Stats.caricaStats(),id);
+        Vector <Long> dt = Stats.getDt(Stats.caricaStats(),id);
+        JSONObject tmp = new JSONObject();
+        
+        
+        
+        tmp.put("name", name);
+        tmp.put("lat", latElement);
+        tmp.put("lon", lonElement);
+		tmp.put("mediaUV", Stats.media(uv,dt,dtmax));
+		tmp.put("maxUV", Stats.getMax(uv,dt,dtmax));
+		tmp.put("minUV", Stats.getMin(uv,dt,dtmax));
+		tmp.put("varianzaUV", Stats.varianza(uv,dt,dtmax, Stats.media(uv,dt,dtmax)));
+        out.add(tmp);
+        
+         }
+                   
+          return out;
         }
-        // return APICoordinates.getCoordinates(lat,lon).size();
-        return out;
-
+        
  
-
-    }
-
  
 
     @GetMapping(value = "/listaCittà", produces = "application/json")
