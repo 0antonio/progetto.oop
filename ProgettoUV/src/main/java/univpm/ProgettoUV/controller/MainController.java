@@ -62,6 +62,7 @@ public class MainController {
         String[] lat = lati.split(",");
         String[] lon = longi.split(",");
         JSONArray out = new JSONArray(), value = new JSONArray();
+        Vector <Long> dtgiorno = new Vector<>();
         
         for(int i =0;i<lat.length;i++) {
         	 String lonElement = lon[i];
@@ -72,6 +73,7 @@ public class MainController {
         long id=APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
         Vector <Double> uv = Stats.getUv(Stats.caricaStats(),id);
         Vector <Long> dt = Stats.getDt(Stats.caricaStats(),id);
+        	
         JSONObject tmp = new JSONObject();
         
         
