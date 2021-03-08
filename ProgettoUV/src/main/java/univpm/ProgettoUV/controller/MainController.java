@@ -133,9 +133,11 @@ public class MainController {
  
 
             if (paese.equals("IT") && contaIT < 100) {
+            	tmp = new JSONObject();
                 tmp.put(nome, coordinate);
                 objOut.add(tmp);
                 contaIT++;
+                System.out.println(contaIT);
             }
 
  
