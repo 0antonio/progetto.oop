@@ -23,7 +23,7 @@ public class StatsController {
 
 	@GetMapping(value = "/stats", produces = "application/json")
 	public JSONArray restituisciElenco(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
-			@RequestParam("range") int range) throws WrongCoordinatesException {
+			@RequestParam(value = "range", defaultValue = "1") int range) throws WrongCoordinatesException {
 
 		String message = "";
 
@@ -71,7 +71,7 @@ public class StatsController {
 
 	@GetMapping(value = "/stats2", produces = "application/json")
 	public JSONArray restituisciElenco2(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
-			@RequestParam("range") int range, @RequestParam("filter") String filter)
+			@RequestParam(value = "range", defaultValue = "1") int range, @RequestParam(value = "filter", defaultValue = "no") String filter)
 			throws WrongCoordinatesException {
 
 		String message = "";

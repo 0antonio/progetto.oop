@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.model.*;
 import univpm.ProgettoUV.stats.Stats;
@@ -21,8 +22,8 @@ import univpm.ProgettoUV.stats.Stats;
 
 @RestController
 public class MainController {
-
-    @GetMapping(value = "/nomeCittà", produces = "application/json")
+	/*
+	@GetMapping(value = "/nomeCittà", produces = "application/json")
     public String exampleMethod(@RequestParam("name") String name, @RequestParam("country") String country)
             throws WrongCoordinatesException {
         String message = "";
@@ -49,10 +50,55 @@ public class MainController {
         // return APICoordinates.getCoordinates(lat,lon).size();
         return message;
     }
+*/
+	
+	
+	@GetMapping(value = "/aggiorna", produces = "application/json")
+	public String aggiorna() {
+		stampaLista.stampa();
+		
+		return "aggiornamento completato";
+	}
+	
+	
+	
+	@GetMapping(value="/coorCittà",produces = "application/json")
+	public JSONArray restituisciElenco2(
+			@RequestParam("lat") String lat,
+			@RequestParam("lon") String lon) throws WrongCoordinatesException  {
+		String message = "";
+		String[] listLat = lat.split(",");
+		String[] listLon = lon.split(",");
+		JSONArray out = new JSONArray(), value = new JSONArray();
+		JSONObject tmp = new JSONObject();
 
- 
-    
-    @GetMapping(value = "/coorCittà", produces = "application/json")
+		int i = 0;
+		for (String latElement : listLat) {
+			String lonElement = listLon[i];
+			i = i++;
+
+			// conversione a double
+			double latitudine = Double.parseDouble(latElement);
+			double longitudine = Double.parseDouble(lonElement);
+
+			message = latitudine + " , " + longitudine ; // ci devo mettere nome città e country
+	
+			value = APICoordinatesNuovo.getCoordinates(latitudine, longitudine);
+			tmp.put(message, value);
+			out.add(tmp);
+		}
+		//
+		//
+
+		
+		// return APICoordinates.getCoordinates(lat,lon).size();
+		return out;
+
+				
+	}
+	
+	/*
+	@GetMapping(value = "/coorCittà", produces = "application/json")
     public JSONArray restituisciElenco(@RequestParam("lat") String lati, @RequestParam("lon") String longi)
             throws WrongCoordinatesException {
         long dtmax= 1999999999;
@@ -81,17 +127,19 @@ public class MainController {
         tmp.put("name", name);
         tmp.put("lat", latElement);
         tmp.put("lon", lonElement);
+        
 		tmp.put("mediaUV", Stats.media(uv,dt,dtmax));
 		tmp.put("maxUV", Stats.getMax(uv,dt,dtmax));
 		tmp.put("minUV", Stats.getMin(uv,dt,dtmax));
 		tmp.put("varianzaUV", Stats.varianza(uv,dt,dtmax, Stats.media(uv,dt,dtmax)));
+        
         out.add(tmp);
         
          }
                    
           return out;
         }
-        
+        */
  
  
 
