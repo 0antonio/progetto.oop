@@ -2,6 +2,8 @@ package univpm.ProgettoUV.stats;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -151,6 +153,23 @@ public class Stats2 {
 		return obj;
 	}
 	
-	
+	public JSONArray getData(long id) {
+		JSONArray out = new JSONArray();
+		JSONObject[] tmp = new JSONObject[tempo.length];
+		int in = trovaIndice(id);
+		for(int i = 0; i< tempo.length; i++) {
+			tmp[i] = new JSONObject();
+			tmp[i].put("uvi", uvi[in][i]);
+			
+			Date time=new Date ((long)tempo[i]*1000); // timestamp espresso in millisecondi
+			//DateFormat dateFormatter;
+			//dateFormatter = DateFormat.getDateInstance(DateFormat.LONG);
+			//String dateOut = dateFormatter.format(time);
+		
+			tmp[i].put("data", time.toString());
+			out.add(tmp[i]);
+		}
+		return out;
+	}
 
 }

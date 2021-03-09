@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.model.*;
 import univpm.ProgettoUV.stats.Stats;
+import univpm.ProgettoUV.stats.Stats2;
 
  
 
@@ -70,13 +71,14 @@ public class MainController {
 		String[] listLat = lat.split(",");
 		String[] listLon = lon.split(",");
 		JSONArray out = new JSONArray(), value = new JSONArray();
-		JSONObject tmp = new JSONObject();
+		JSONObject[] tmp = new JSONObject[listLat.length];
 
 	/*	int i = 0;
 		for (String latElement : listLat) {
 			String lonElement = listLon[i];
 			i = i++;
 			*/
+			Stats2 object = new Stats2(1);
 			for(int i =0;i<listLat.length;i++) {
 	        	 String latElement = listLat[i];
 	        	 String lonElement = listLon[i];
@@ -87,17 +89,19 @@ public class MainController {
 	        String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
 	        long id = APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
 	        
-	        Vector<Double> uv = Stats.getUv(Stats.caricaStats(), id);
-			Vector<Long> dt = Stats.getDt(Stats.caricaStats(), id);
 			
 			message="lat:"+latitudine + " , lon:" + longitudine ; // ci devo mettere nome città e country
 	
-			value = APICoordinates.getCoordinates(latitudine, longitudine);
-			tmp.put("name", name);
-			tmp.put(message, value);
-			out.add(tmp);
+			//value = APICoordinates.getCoordinates(latitudine, longitudine);
+			tmp[i] = new JSONObject();
+			tmp[i].put("name", name);
+			tmp[i].put("coor:", message);
+			tmp[i].put("valori", object.getData(id));
+			out.add(tmp[i]);
 		}
 		
+			
+			
 		return out;			
 	}
 	
