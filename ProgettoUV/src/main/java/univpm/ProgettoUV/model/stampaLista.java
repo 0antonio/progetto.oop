@@ -98,7 +98,7 @@ public class stampaLista {
 				tmp[j] = new JSONObject();
 				tmp[j].put("id", ID);
 				
-				timeAndVal = APICoordinatesNuovo.getCoordinates(latitudine,longitudine);
+				timeAndVal = APICoordinates.getCoordinates(latitudine,longitudine);
 	
 				firstTimeAndVal = (JSONObject) timeAndVal.get(0);
 				firstTime = (long) firstTimeAndVal.get("dt");

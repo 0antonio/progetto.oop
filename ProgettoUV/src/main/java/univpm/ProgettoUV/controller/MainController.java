@@ -22,7 +22,7 @@ import univpm.ProgettoUV.stats.Stats;
 
 @RestController
 public class MainController {
-	/*
+	
 	@GetMapping(value = "/nomeCittà", produces = "application/json")
     public String exampleMethod(@RequestParam("name") String name, @RequestParam("country") String country)
             throws WrongCoordinatesException {
@@ -50,7 +50,7 @@ public class MainController {
         // return APICoordinates.getCoordinates(lat,lon).size();
         return message;
     }
-*/
+
 	
 	
 	@GetMapping(value = "/aggiorna", produces = "application/json")
@@ -72,33 +72,37 @@ public class MainController {
 		JSONArray out = new JSONArray(), value = new JSONArray();
 		JSONObject tmp = new JSONObject();
 
-		int i = 0;
+	/*	int i = 0;
 		for (String latElement : listLat) {
 			String lonElement = listLon[i];
 			i = i++;
-
+			*/
+			for(int i =0;i<listLat.length;i++) {
+	        	 String latElement = listLat[i];
+	        	 String lonElement = listLon[i];
+	        	
 			// conversione a double
 			double latitudine = Double.parseDouble(latElement);
 			double longitudine = Double.parseDouble(lonElement);
-
-			message = latitudine + " , " + longitudine ; // ci devo mettere nome città e country
+	        String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
+	        long id = APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
+	        
+	        Vector<Double> uv = Stats.getUv(Stats.caricaStats(), id);
+			Vector<Long> dt = Stats.getDt(Stats.caricaStats(), id);
+			
+			message="lat:"+latitudine + " , lon:" + longitudine ; // ci devo mettere nome città e country
 	
-			value = APICoordinatesNuovo.getCoordinates(latitudine, longitudine);
+			value = APICoordinates.getCoordinates(latitudine, longitudine);
+			tmp.put("name", name);
 			tmp.put(message, value);
 			out.add(tmp);
 		}
-		//
-		//
-
 		
-		// return APICoordinates.getCoordinates(lat,lon).size();
-		return out;
-
-				
+		return out;			
 	}
 	
-	/*
-	@GetMapping(value = "/coorCittà", produces = "application/json")
+	
+	@GetMapping(value = "/cooorCittà", produces = "application/json")
     public JSONArray restituisciElenco(@RequestParam("lat") String lati, @RequestParam("lon") String longi)
             throws WrongCoordinatesException {
         long dtmax= 1999999999;
@@ -116,13 +120,17 @@ public class MainController {
        
 
         String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
+      
+       /* double latitudine = Double.parseDouble(latElement);
+		double longitudine = Double.parseDouble(lonElement);
+		value = APICoordinatesNuovo.getCoordinates(latitudine, longitudine);
+        */
         long id=APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
         Vector <Double> uv = Stats.getUv(Stats.caricaStats(),id);
         Vector <Long> dt = Stats.getDt(Stats.caricaStats(),id);
         	
         JSONObject tmp = new JSONObject();
-        
-        
+       
         
         tmp.put("name", name);
         tmp.put("lat", latElement);
@@ -139,7 +147,7 @@ public class MainController {
                    
           return out;
         }
-        */
+        
  
  
 
