@@ -11,7 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.expression.spel.ast.OperatorInstanceof;
 
-public class Stats2 {
+public class Stats2 implements StatsService {
 	private final String fileName = "listaValori.json";
 	private JSONArray lista; // tutti i valori di listaValori
 	private int numGiorni; //numGiorni è il numero di giorni su cui effettuare le statistiche, scelto dall'utente
@@ -60,6 +60,7 @@ public class Stats2 {
 		indiceUltimoTempo = kCont;
 	}
 	
+	@Override
 	public JSONArray generaStats(long id) { // genera le statistiche per la città di cui fornisco l'id
 		JSONArray out = new JSONArray();
 		JSONObject tmp = new JSONObject();
@@ -84,6 +85,7 @@ public class Stats2 {
 		return out;
 	}
 	
+	@Override
 	public int trovaIndice(long id) { // trova in quale posizione dell'array si trova la città con valore "id"
 		int indice = 0;
 		for(int i = 0; i<città.length ;i++) {
@@ -95,6 +97,7 @@ public class Stats2 {
 		return indice;
 	}
 	
+	@Override
 	public double massimo(double[] periodo) {
 		double out = periodo[0];
 		for(int i = 1; i < periodo.length; i++) {
@@ -105,6 +108,7 @@ public class Stats2 {
 		return out;
 	}
 	
+	@Override
 	public double minimo(double[] periodo) {
 		double out = periodo[0];
 		for(int i = 1; i < periodo.length; i++) {
@@ -115,6 +119,7 @@ public class Stats2 {
 		return out;
 	}
 	
+	@Override
 	public double media(double[] periodo) {
 		double out = 0;
 		for(int i = 1; i < periodo.length; i++) {
@@ -123,6 +128,7 @@ public class Stats2 {
 		return out/periodo.length;
 	}
 	
+	@Override
 	public double varianza(double[] periodo) {
 		double out = 0;
 		double med = media(periodo);
@@ -131,6 +137,7 @@ public class Stats2 {
 		}
 		return out/periodo.length;
 	}
+	
 	
 	private JSONArray leggi() {
 		JSONArray obj= new JSONArray();
@@ -153,6 +160,7 @@ public class Stats2 {
 		return obj;
 	}
 	
+	@Override
 	public JSONArray getData(long id) {
 		JSONArray out = new JSONArray();
 		JSONObject[] tmp = new JSONObject[tempo.length];
