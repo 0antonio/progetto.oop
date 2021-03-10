@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
+import univpm.ProgettoUV.exception.WrongFilterException;
 import univpm.ProgettoUV.exception.WrongRangeException;
 import univpm.ProgettoUV.model.APICoordinates;
 import univpm.ProgettoUV.stats.MinMax;
@@ -74,7 +75,7 @@ public class StatsController {
 	@GetMapping(value = "/stats2", produces = "application/json")
 	public JSONArray restituisciElenco2(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
 			@RequestParam(value = "range", defaultValue = "1") int range, @RequestParam(value = "filter", defaultValue = "no") String filter)
-			throws WrongCoordinatesException,WrongRangeException{
+			throws WrongCoordinatesException,WrongRangeException,WrongFilterException{
 
 		String message = "";
 
@@ -98,7 +99,20 @@ public class StatsController {
 		   return out;
 		}
 
-		
+		try {
+	           if(!(filter.equals("max") || filter.equals("min") || filter.equals("no"))) {
+	        	 throw new  WrongFilterException();
+				}
+			}
+			catch(WrongFilterException e){
+			   System.out.println(e.getMessaggio());
+			   out.clear();
+			   JSONObject tmp=new JSONObject();
+			   tmp.put("Error",e.getMessaggio());
+			   out.add(tmp);
+			   return out;
+			}
+
 		
 		Stats2 st = new Stats2(range);
 

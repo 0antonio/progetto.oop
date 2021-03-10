@@ -119,11 +119,12 @@ public class MainController {
         JSONArray out = new JSONArray(), value = new JSONArray();
         Vector <Long> dtgiorno = new Vector<>();
         
+        
         for(int i =0;i<lat.length;i++) {
         	 String lonElement = lon[i];
         	 String latElement = lat[i];
-       
-
+        
+        
         String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
       
        /* double latitudine = Double.parseDouble(latElement);
@@ -149,6 +150,8 @@ public class MainController {
         out.add(tmp);
         
          }
+        
+        
                    
           return out;
         }
