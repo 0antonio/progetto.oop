@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
+import univpm.ProgettoUV.exception.WrongRangeException;
 import univpm.ProgettoUV.model.APICoordinates;
 import univpm.ProgettoUV.stats.MinMax;
 import univpm.ProgettoUV.stats.Stats;
@@ -72,7 +74,7 @@ public class StatsController {
 	@GetMapping(value = "/stats2", produces = "application/json")
 	public JSONArray restituisciElenco2(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
 			@RequestParam(value = "range", defaultValue = "1") int range, @RequestParam(value = "filter", defaultValue = "no") String filter)
-			throws WrongCoordinatesException {
+			throws WrongCoordinatesException,WrongRangeException{
 
 		String message = "";
 
@@ -81,7 +83,21 @@ public class StatsController {
 		JSONArray out = new JSONArray(), value = new JSONArray();
 		Vector<Long> dtgiorno = new Vector<>();
 		
-		
+
+		try {
+           if(range<=0 || range>10) {
+        	 throw new  WrongRangeException();
+			}
+		}
+		catch(WrongRangeException e){
+		   System.out.println(e.getMessaggio());
+		   out.clear();
+		   JSONObject tmp=new JSONObject();
+		   tmp.put("Error",e.getMessaggio());
+		   out.add(tmp);
+		   return out;
+		}
+
 		
 		
 		Stats2 st = new Stats2(range);
@@ -122,7 +138,8 @@ public class StatsController {
 			out.add(tmp);
 
 		}
-
+		
+		
 		if (filter.equals("no")) {
 			return out;
 		} else {
@@ -130,5 +147,6 @@ public class StatsController {
 			return mm.getMinMax(filter);
 		}
 	}
+	
 
 }
