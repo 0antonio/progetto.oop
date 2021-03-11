@@ -20,6 +20,7 @@ import univpm.ProgettoUV.model.APICoordinates;
 import univpm.ProgettoUV.stats.MinMax;
 import univpm.ProgettoUV.stats.Stats;
 import univpm.ProgettoUV.stats.Stats2;
+import univpm.ProgettoUV.stats.StatsService;
 
 @RestController
 public class StatsController {
@@ -74,8 +75,9 @@ public class StatsController {
 
 	@GetMapping(value = "/stats2", produces = "application/json")
 	public JSONArray restituisciElenco2(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
-			@RequestParam(value = "range", defaultValue = "1") int range, @RequestParam(value = "filter", defaultValue = "no") String filter)
-			throws WrongCoordinatesException,WrongRangeException,WrongFilterException{
+			@RequestParam(value = "range", defaultValue = "1") int range,
+			@RequestParam(value = "filter", defaultValue = "no") String filter)
+			throws WrongCoordinatesException, WrongRangeException, WrongFilterException {
 
 		String message = "";
 
@@ -84,80 +86,82 @@ public class StatsController {
 		JSONArray out = new JSONArray(), value = new JSONArray();
 		Vector<Long> dtgiorno = new Vector<>();
 		
+		Stats2 st = new Stats2(range);
 
 		try {
-           if(range<=0 || range>10) {
-        	 throw new  WrongRangeException();
-             }
-           if(!(filter.equals("max") || filter.equals("min") || filter.equals("no"))) {
-	        	 throw new  WrongFilterException();
-             }
-		   }
-		catch(WrongRangeException e){
-		   System.out.println(e.getMessaggio());
-		   out.clear();
-		   JSONObject tmp=new JSONObject();
-		   tmp.put("Error",e.getMessaggio());
-		   out.add(tmp);
-		   return out;
-		}catch(WrongFilterException e){
-			   System.out.println(e.getMessaggio());
-			   out.clear();
-			   JSONObject tmp=new JSONObject();
-			   tmp.put("Error",e.getMessaggio());
-			   out.add(tmp);
-			   return out;
+			if (range <= 0) {
+				throw new WrongRangeException();
 			}
+			if (!(filter.equals("max") || filter.equals("min") || filter.equals("no"))) {
+				throw new WrongFilterException();
+			}
+			
+			if (range > st.giorniDisponibili()) {
+				throw new WrongRangeException();
+			}
+			
+		} catch (WrongRangeException e) {
+			System.out.println(e.getMessaggio());
+			out.clear();
+			JSONObject tmp = new JSONObject();
+			tmp.put("Error", e.getMessaggio());
+			out.add(tmp);
+			return out;
+		} catch (WrongFilterException e) {
+			System.out.println(e.getMessaggio());
+			out.clear();
+			JSONObject tmp = new JSONObject();
+			tmp.put("Error", e.getMessaggio());
+			out.add(tmp);
+			return out;
+		}
 
-		
-		Stats2 st = new Stats2(range);
+		//Stats2 st = new Stats2(range);
 
 		for (int i = 0; i < lat.length; i++) {
 			String lonElement = lon[i];
 			String latElement = lat[i];
-            try {
-			String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
-			long id = APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
+			try {
+				String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
+				long id = APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
 
-			Vector<Double> uv = Stats.getUv(Stats.caricaStats(), id);
-			Vector<Long> dt = Stats.getDt(Stats.caricaStats(), id);
-			for (Long element : dt) {
-				if ((element / 3600) % 24 == 0) {
-					dtgiorno.add(element);
+				Vector<Double> uv = Stats.getUv(Stats.caricaStats(), id);
+				Vector<Long> dt = Stats.getDt(Stats.caricaStats(), id);
+				for (Long element : dt) {
+					if ((element / 3600) % 24 == 0) {
+						dtgiorno.add(element);
+					}
 				}
+
+				JSONObject tmp = new JSONObject();
+
+				tmp.put("name", name);
+				tmp.put("lat", latElement);
+				tmp.put("lon", lonElement);
+
+				JSONArray res = st.generaStats(id);
+				tmp.put("stats", res);
+				/*
+				 * for(int j=0;j<dtgiorno.size();j=j+range) { JSONObject statsobj = new
+				 * JSONObject(); statsobj.put("mediaUV", Stats.media(uv,dt,dtgiorno.get(j)));
+				 * statsobj.put("maxUV", Stats.getMax(uv,dt,dtgiorno.get(j)));
+				 * statsobj.put("minUV", Stats.getMin(uv,dt,dtgiorno.get(j)));
+				 * statsobj.put("varianzaUV", Stats.varianza(uv,dt,dtgiorno.get(j),
+				 * Stats.media(uv,dt,dtgiorno.get(j))));
+				 * tmp.put("stats"+j+" - "+(j+range)+"giorni",statsobj); }
+				 */
+
+				out.add(tmp);
+			} catch (WrongCoordinatesException e) {
+				System.out.println(e.getMessaggio());
+				out.clear();
+				JSONObject tmp = new JSONObject();
+				tmp.put("Error", e.getMessaggio());
+				out.add(tmp);
+				return out;
 			}
-
-			JSONObject tmp = new JSONObject();
-
-			tmp.put("name", name);
-			tmp.put("lat", latElement);
-			tmp.put("lon", lonElement);
-
-			
-			JSONArray res = st.generaStats(id);
-			tmp.put("stats", res);
-			/*
-			 * for(int j=0;j<dtgiorno.size();j=j+range) { JSONObject statsobj = new
-			 * JSONObject(); statsobj.put("mediaUV", Stats.media(uv,dt,dtgiorno.get(j)));
-			 * statsobj.put("maxUV", Stats.getMax(uv,dt,dtgiorno.get(j)));
-			 * statsobj.put("minUV", Stats.getMin(uv,dt,dtgiorno.get(j)));
-			 * statsobj.put("varianzaUV", Stats.varianza(uv,dt,dtgiorno.get(j),
-			 * Stats.media(uv,dt,dtgiorno.get(j))));
-			 * tmp.put("stats"+j+" - "+(j+range)+"giorni",statsobj); }
-			 */
-
-			out.add(tmp);
-		}catch(WrongCoordinatesException e) {
-			System.out.println(e.getMessaggio());
-			   out.clear();
-			   JSONObject tmp=new JSONObject();
-			   tmp.put("Error",e.getMessaggio());
-			   out.add(tmp);
-			   return out;
 		}
-		}
-		
-		
+
 		if (filter.equals("no")) {
 			return out;
 		} else {
@@ -165,6 +169,5 @@ public class StatsController {
 			return mm.getMinMax(filter);
 		}
 	}
-	
 
 }

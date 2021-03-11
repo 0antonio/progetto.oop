@@ -11,7 +11,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.expression.spel.ast.OperatorInstanceof;
 
-public class Stats2 implements StatsService {
+import univpm.ProgettoUV.model.UtilityDati;
+
+public class Stats2 extends UtilityDati implements StatsService {
 	private final String fileName = "listaValori.json";
 	private JSONArray lista; // tutti i valori di listaValori
 	private int numGiorni; //numGiorni è il numero di giorni su cui effettuare le statistiche, scelto dall'utente
@@ -70,7 +72,7 @@ public class Stats2 implements StatsService {
 		double[] uviInPeriodo = new double[24*numGiorni];
 		for(int i = 0; i<numPeriodi;i++) {
 			for(int j = 0; j < 24*numGiorni; j++) {
-				System.out.println(indiceUltimoTempo-j-i*24*numGiorni);
+
 				uviInPeriodo[j] = uvi[indice][indiceUltimoTempo-j-i*24*numGiorni]; //???
 			}
 			tmp.put("periodo numero", i); // dal più alto al più basso, il periodo 100 è antico
@@ -141,7 +143,7 @@ public class Stats2 implements StatsService {
 	
 	private JSONArray leggi() {
 		JSONArray obj= new JSONArray();
-		
+		/*
 		try {
 		JSONParser jsonParser = new JSONParser();
          //FileReader reader = new FileReader("city.list.json"); ho cambiato questo
@@ -156,7 +158,8 @@ public class Stats2 implements StatsService {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
+		obj = leggi(fileName);
 		return obj;
 	}
 	
@@ -178,6 +181,10 @@ public class Stats2 implements StatsService {
 			out.add(tmp[i]);
 		}
 		return out;
+	}
+	
+	public int giorniDisponibili() {
+		return lengthVal/24;
 	}
 
 }

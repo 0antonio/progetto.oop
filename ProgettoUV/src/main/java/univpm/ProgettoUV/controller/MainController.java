@@ -57,7 +57,8 @@ public class MainController {
 	
 	@GetMapping(value = "/aggiorna", produces = "application/json")
 	public String aggiorna() {
-		stampaLista.stampa();
+		StampaLista aggiorna = new StampaLista();
+		aggiorna.stampa();
 		
 		return "aggiornamento completato";
 	}
