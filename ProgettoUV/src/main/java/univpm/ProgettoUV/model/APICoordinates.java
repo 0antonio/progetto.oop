@@ -110,8 +110,8 @@ public class APICoordinates {
 	}
 	
 	
-public static Long getCityId(JSONArray ja,String lat,String lon) {
-		
+public static Long getCityId(JSONArray ja,String lat,String lon) throws WrongCoordinatesException {
+		boolean trovato=false;
 		long id=0;
 		for(int i =0; i<ja.size(); i++) {
 			
@@ -122,11 +122,15 @@ public static Long getCityId(JSONArray ja,String lat,String lon) {
 			
 			if(latitudine.equals(lat)) {
 				if(longitudine.equals(lon)) {
-                  id = (Long) cityObject.get("id");  
+                  id = (Long) cityObject.get("id");
+                  trovato=true;
+                  
 				}
 			}
 		} 
+		if(trovato)
 		return id;
+		else throw new WrongCoordinatesException();
 	}
 
 

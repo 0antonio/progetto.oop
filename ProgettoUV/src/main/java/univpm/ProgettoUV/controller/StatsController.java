@@ -88,8 +88,11 @@ public class StatsController {
 		try {
            if(range<=0 || range>10) {
         	 throw new  WrongRangeException();
-			}
-		}
+             }
+           if(!(filter.equals("max") || filter.equals("min") || filter.equals("no"))) {
+	        	 throw new  WrongFilterException();
+             }
+		   }
 		catch(WrongRangeException e){
 		   System.out.println(e.getMessaggio());
 		   out.clear();
@@ -97,14 +100,7 @@ public class StatsController {
 		   tmp.put("Error",e.getMessaggio());
 		   out.add(tmp);
 		   return out;
-		}
-
-		try {
-	           if(!(filter.equals("max") || filter.equals("min") || filter.equals("no"))) {
-	        	 throw new  WrongFilterException();
-				}
-			}
-			catch(WrongFilterException e){
+		}catch(WrongFilterException e){
 			   System.out.println(e.getMessaggio());
 			   out.clear();
 			   JSONObject tmp=new JSONObject();
@@ -119,9 +115,10 @@ public class StatsController {
 		for (int i = 0; i < lat.length; i++) {
 			String lonElement = lon[i];
 			String latElement = lat[i];
-
+            try {
 			String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
 			long id = APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
+
 			Vector<Double> uv = Stats.getUv(Stats.caricaStats(), id);
 			Vector<Long> dt = Stats.getDt(Stats.caricaStats(), id);
 			for (Long element : dt) {
@@ -150,7 +147,14 @@ public class StatsController {
 			 */
 
 			out.add(tmp);
-
+		}catch(WrongCoordinatesException e) {
+			System.out.println(e.getMessaggio());
+			   out.clear();
+			   JSONObject tmp=new JSONObject();
+			   tmp.put("Error",e.getMessaggio());
+			   out.add(tmp);
+			   return out;
+		}
 		}
 		
 		

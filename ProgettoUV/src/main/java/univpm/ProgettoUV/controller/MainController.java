@@ -87,6 +87,7 @@ public class MainController {
 			// conversione a double
 			double latitudine = Double.parseDouble(latElement);
 			double longitudine = Double.parseDouble(lonElement);
+			try {
 	        String name = APICoordinates.getCityname(APICoordinates.caricaArray(), latElement, lonElement);
 	        long id = APICoordinates.getCityId(APICoordinates.caricaArray(), latElement, lonElement);
 	        
@@ -99,6 +100,15 @@ public class MainController {
 			tmp[i].put("coor:", message);
 			tmp[i].put("valori", object.getData(id));
 			out.add(tmp[i]);
+			
+			}catch(WrongCoordinatesException e) {
+				System.out.println(e.getMessaggio());
+				   out.clear();
+				   JSONObject tmpp=new JSONObject();
+				   tmpp.put("Error",e.getMessaggio());
+				   out.add(tmpp);
+				   return out;
+			}
 		}
 		
 			
@@ -148,7 +158,7 @@ public class MainController {
 		tmp.put("varianzaUV", Stats.varianza(uv,dt,dtmax, Stats.media(uv,dt,dtmax)));
         
         out.add(tmp);
-        
+         
          }
         
         
@@ -201,7 +211,6 @@ public class MainController {
                 tmp.put(nome, coordinate);
                 objOut.add(tmp);
                 contaIT++;
-                System.out.println(contaIT);
             }
 
  
