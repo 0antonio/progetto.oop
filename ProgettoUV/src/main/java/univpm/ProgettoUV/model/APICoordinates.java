@@ -17,10 +17,7 @@ public class APICoordinates {
 	private static String filename = "city.list.json";	
 	
 	public static JSONArray getCoordinates(double lat,double lon) {
-		//String url = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat="+lat+"&lon="+lon+"&appid=67d40513b0e3e715b6cec6f7e02d354d"; 
 		String url = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+ "&lon="+lon +"&exclude=minutely,daily&appid=67d40513b0e3e715b6cec6f7e02d354d";
-		 //url = "http://api.openweathermap.org/data/2.5/uvi/history?lat="+lat+"&lon="+lon+"&appid=67d40513b0e3e715b6cec6f7e02d354d"; 
-		//api.openweathermap.org/geo/1.0/direct?q="+nome+"&limit=50&appid=67d40513b0e3e715b6cec6f7e02d354d
 		 String data = "";
 		 String line = "";
 		 JSONObject obj = null;

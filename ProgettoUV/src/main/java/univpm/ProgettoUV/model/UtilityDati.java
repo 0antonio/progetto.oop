@@ -13,17 +13,12 @@ public class UtilityDati {
 		JSONArray obj = null;
 		JSONParser jsonParser = new JSONParser();
 		try {
-		FileReader reader = new FileReader(fileName);
-		//Read JSON file
-		
-		
+		FileReader reader = new FileReader(fileName);		
 			obj = (JSONArray) jsonParser.parse(reader);
 			reader.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return obj;
@@ -36,7 +31,6 @@ public class UtilityDati {
 			file.write(jarr.toJSONString());
 			file.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -1,15 +1,10 @@
 package univpm.ProgettoUV.model;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class StampaLista extends UtilityDati {
 
@@ -46,10 +41,8 @@ public class StampaLista extends UtilityDati {
 			ID = cityObject.get("id");
 			paese = (String) cityObject.get("country");
 			name = (String) cityObject.get("name");
-			// System.out.println(paese);
 
 			if (paese.equals(italia) && contaIT < 100 && (!cittàPassate.contains(name))) {
-				// System.out.println(paese);
 				cittàPassate.add(name);
 				tmp[j] = new JSONObject();
 				tmp[j].put("id", ID);

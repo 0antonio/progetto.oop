@@ -6,7 +6,7 @@ import org.json.simple.JSONObject;
 
 import univpm.ProgettoUV.model.UtilityDati;
 
-public class Stats2 implements StatsService {
+public class Statistiche implements StatsService {
 	private final String fileName = "listaValori.json";
 	private JSONArray lista; // tutti i valori di listaValori
 	private int numGiorni; //numGiorni è il numero di giorni su cui effettuare le statistiche, scelto dall'utente
@@ -18,7 +18,7 @@ public class Stats2 implements StatsService {
 	private int indiceUltimoTempo; // indice dell'ultimo time stamp
 	private double[][] uvi; // matrice di uvi. il primo valore cicla sulle città, il secondo su "uvi"
 
-	public Stats2(int numGiorni) { // id della città e numGiorni scelto dall'utente per fare le statistiche (giornaliera, bigiornaliera...)
+	public Statistiche(int numGiorni) { // id della città e numGiorni scelto dall'utente per fare le statistiche (giornaliera, bigiornaliera...)
 		UtilityDati ut = new UtilityDati();
 		lista = ut.leggi(fileName);
 		this.numGiorni = numGiorni;
