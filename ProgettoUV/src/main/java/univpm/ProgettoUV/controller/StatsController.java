@@ -89,11 +89,15 @@ public class StatsController {
 		Stats2 st = new Stats2(range);
 
 		try {
-			if (range <= 0 || range > st.giorniDisponibili()) {
+			if (range <= 0) {
 				throw new WrongRangeException();
 			}
 			if (!(filter.equals("max") || filter.equals("min") || filter.equals("no"))) {
 				throw new WrongFilterException();
+			}
+			
+			if (range > st.giorniDisponibili()) {
+				throw new WrongRangeException();
 			}
 			
 		} catch (WrongRangeException e) {
