@@ -24,7 +24,7 @@ import univpm.ProgettoUV.stats.StatsService;
 
 @RestController
 public class StatsController {
-
+/*
 	@GetMapping(value = "/stats", produces = "application/json")
 	public JSONArray restituisciElenco(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
 			@RequestParam(value = "range", defaultValue = "1") int range) throws WrongCoordinatesException {
@@ -72,8 +72,8 @@ public class StatsController {
 
 		return out;
 	}
-
-	@GetMapping(value = "/stats2", produces = "application/json")
+*/
+	@GetMapping(value = "/stats", produces = "application/json")
 	public JSONArray restituisciElenco2(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
 			@RequestParam(value = "range", defaultValue = "1") int range,
 			@RequestParam(value = "filter", defaultValue = "no") String filter)
