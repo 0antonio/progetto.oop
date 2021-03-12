@@ -155,6 +155,7 @@ public class Statistiche implements StatsService {
 		return out;
 	}
 	
+	@Override
 	public int giorniDisponibili() {
 		return lengthVal/24;
 	}

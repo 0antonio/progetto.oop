@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.model.*;
-import univpm.ProgettoUV.stats.Stats2;
+import univpm.ProgettoUV.stats.Statistiche;
+import univpm.ProgettoUV.stats.StatsService;
 
  
 
@@ -70,7 +71,7 @@ public class MainController {
 		String[] listLon = lon.split(",");
 		JSONArray out = new JSONArray(), value = new JSONArray();
 		JSONObject[] tmp = new JSONObject[listLat.length];
-		Stats2 object = new Stats2(1);
+		StatsService object = new Statistiche(1);
 		
 			for(int i =0;i<listLat.length;i++) {
 	        	 String latElement = listLat[i];

@@ -19,7 +19,7 @@ import univpm.ProgettoUV.exception.WrongRangeException;
 import univpm.ProgettoUV.model.APICoordinates;
 import univpm.ProgettoUV.stats.MinMax;
 
-import univpm.ProgettoUV.stats.Stats2;
+import univpm.ProgettoUV.stats.Statistiche;
 import univpm.ProgettoUV.stats.StatsService;
 
 @RestController
@@ -38,7 +38,7 @@ public class StatsController {
 		JSONArray out = new JSONArray(), value = new JSONArray();
 		Vector<Long> dtgiorno = new Vector<>();
 		
-		Stats2 st = new Stats2(range);
+		StatsService st = new Statistiche(range);
 
 		try {
 			if (range <= 0 || range > st.giorniDisponibili()) {

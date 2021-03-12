@@ -18,5 +18,7 @@ public interface StatsService {
 	
 	public abstract JSONArray getData(long id);
 	
+	public abstract int giorniDisponibili();
+	
 	
 }
