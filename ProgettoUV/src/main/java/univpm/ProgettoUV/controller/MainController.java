@@ -9,7 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.model.*;
 
- 
+
+/**
+ *<p>
+ *La classe <b>MainController</b> permette all'utente di visualizzare la lista di città prese in considerazione 
+ *per le statistiche e di visualizzare i dati  in corrispondenza delle coordinate scelte.
+ *</p>
+ *
+ * @author Giangrossi Antonio
+ * @author Di lorenzo Emanuele
+ * 
+ */
+
 
 @RestController
 public class MainController {
@@ -42,7 +53,12 @@ public class MainController {
         return message;
     }*/
 
-	
+	/**
+	 * Questo metodo permette di aggiornare la lista di dati delle citta prese in considerazione
+	 * 
+	 * 
+	 * @return <code>String</code>
+	 */
 	
 	@GetMapping(value = "/aggiorna", produces = "application/json")
 	public String aggiorna() {
@@ -52,7 +68,16 @@ public class MainController {
 		return "aggiornamento completato";
 	}
 	
-	
+	/**
+	 * Questo metodo permette di visualizzare i dati delle città inserite dall'utente
+	 * 
+	 * @param lat indica la latitudine della città da inserire
+	 * @param lon indica la longitudine della città da inserire
+	 * 
+	 * @throws WrongCoordinatesException coordinate inserite in maniera sbagliata 
+	 * 
+	 * @return <code>JSONArray</code>
+	 */
 	
 	@GetMapping(value="/coorCittà",produces = "application/json")
 	public JSONArray restituisciDatiNoStats(
@@ -61,7 +86,13 @@ public class MainController {
 		GestoreRotte gs = new GestoreRotte();
 				   return gs.datiNoStats(lat, lon);
 		}
-	
+	/**
+	 * Questo metodo permette di visualizzare la lista di città prese in considerazione per 
+	 * il calcolo delle statistiche
+	 * 
+	 * 
+	 * @return <code>JSONArray</code>
+	 */
 
     @GetMapping(value = "/listaCittà", produces = "application/json")
     public JSONArray listaCit() throws FileNotFoundException {
