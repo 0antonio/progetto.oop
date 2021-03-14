@@ -59,8 +59,16 @@ public class TestStatistiche {
 	 * Testa la correttezza delle statistiche 
 	 * restituite. I valori di confronto scelti sono quelli riferiti
 	 * alle date più vecchie poichè non cambiano con un eventuale
-	 * aggiornamento del file "listaValori"
+	 * aggiornamento del file "listaValori".
+	 * L'espressione condizionale prima del test con range = 2 è necessria in quanto,
+	 * se nel file "listaValori" è presente un numero pari o dispari di giorni
+	 * salvati, la statistica su due giorni restituirà, sul primo periodo,
+	 * le statistiche fatte sui giorni 0 e 1 oppure 1 e 2, poichè i periodi
+	 * partono dal giorno disponibile più recente, e di conseguenza
+	 * si tratta di due casi diversi. Se il file "listaValori"
+	 * viene completamente sostituito si otterranno valori diversi
 	 */
+
 	
 	@Test
 	void statisticheComplete() {
@@ -74,13 +82,22 @@ public class TestStatistiche {
 		assertEquals( 1.0515833333333335 , ((JSONObject) tmp1.get(ind1)).get("media"));
 		assertEquals( 4.771 , ((JSONObject) tmp1.get(ind1)).get("max"));
 		assertEquals( ind1 , ((JSONObject) tmp1.get(ind1)).get("periodo numero"));
-		
+
+		if(ind1%2!=0) {
 		assertEquals( 0.0 , ((JSONObject) tmp2.get(ind2)).get("min"));
-		//assertEquals( 1.6584553567346652 , ((JSONObject) tmp2.get(ind2)).get("varianza"));
-		//assertEquals( 0.8012083333333334 , ((JSONObject) tmp2.get(ind2)).get("media"));
+		assertEquals( 1.6584553567346652 , ((JSONObject) tmp2.get(ind2)).get("varianza"));
+		assertEquals( 0.8012083333333334 , ((JSONObject) tmp2.get(ind2)).get("media"));
 		assertEquals( 4.25 , ((JSONObject) tmp2.get(ind2)).get("max"));
 		assertEquals( ind2 , ((JSONObject) tmp2.get(ind2)).get("periodo numero"));
-		
+		}
+		else {
+			assertEquals( 0.0 , ((JSONObject) tmp2.get(ind2)).get("min"));
+			assertEquals( 1.9824654866536457, ((JSONObject) tmp2.get(ind2)).get("varianza"));
+			assertEquals( 0.9293749999999998 , ((JSONObject) tmp2.get(ind2)).get("media"));
+			assertEquals( 4.25 , ((JSONObject) tmp2.get(ind2)).get("max"));
+			assertEquals( ind2 , ((JSONObject) tmp2.get(ind2)).get("periodo numero"));
+			
+		}
 	}
 	
 	/**
