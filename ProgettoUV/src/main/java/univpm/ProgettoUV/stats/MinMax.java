@@ -2,6 +2,15 @@ package univpm.ProgettoUV.stats;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+/**
+ * <p>
+ * <b>Classe</b> che prende le <i>statistiche</i> delle città scelte dall'utente
+ * in un <i>range</i> e mostra all'utente quale citta ha media max o min 
+ * <p>
+ * 
+ * @author Giangrossi Antonio
+ * @author Di lorenzo Emanuele
+ */
 
 public class MinMax {
 	private JSONArray statistiche;
@@ -11,7 +20,17 @@ public class MinMax {
 		this.statistiche = statistiche;
 
 	}
-
+  
+	/**
+	 * ritorna la media max o min in un determinato periodo tra le città scelte
+	 * 
+	 * @param operatore indica la stringa inserita dall'utente per il filtraggio
+	 * 
+	 * 
+	 * @return un <code>JSONArray</code> 
+	 */
+	
+	
 	public JSONArray getMinMax(String operatore) {
 		JSONArray out = new JSONArray();
 		JSONArray statsCittà = (JSONArray) ((JSONObject) statistiche.get(0)).get("stats");

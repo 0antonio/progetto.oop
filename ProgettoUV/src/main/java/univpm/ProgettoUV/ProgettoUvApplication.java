@@ -3,6 +3,11 @@ package univpm.ProgettoUV;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/** Avvia l'applicazione Spring.
+ * @author Giangrossi Antonio
+ * @author Di lorenzo Emanuele
+ *
+ */
 
 
 @SpringBootApplication

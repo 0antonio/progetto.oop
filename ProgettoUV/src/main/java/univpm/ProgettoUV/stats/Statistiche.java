@@ -6,6 +6,18 @@ import org.json.simple.JSONObject;
 
 import univpm.ProgettoUV.model.UtilityDati;
 
+/**
+ * 
+ * <p>
+ * <b>Classe</b> che calcola le <i>statistiche (media, varianza, max e min)</i> delle città scelte dall'utente
+ * e che implementa l'interfaccia <b>StatsService</b>
+ * <p>
+ * 
+ * @author Giangrossi Antonio
+ * @author Di lorenzo Emanuele
+ *
+ */
+
 public class Statistiche implements StatsService {
 	private final String fileName = "listaValori.json";
 	private JSONArray lista; // tutti i valori di listaValori
@@ -18,6 +30,14 @@ public class Statistiche implements StatsService {
 	private int indiceUltimoTempo; // indice dell'ultimo time stamp
 	private double[][] uvi; // matrice di uvi. il primo valore cicla sulle città, il secondo su "uvi"
 
+	/**
+	 * trova i valori UV delle città desiderate in un determinato periodo nel file listaValori
+	 * 
+	 * @param numGiorni indica il periodo scelto dall'utente per fare le statistiche
+	 * 
+	 */
+	
+	
 	public Statistiche(int numGiorni) { // id della città e numGiorni scelto dall'utente per fare le statistiche (giornaliera, bigiornaliera...)
 		UtilityDati ut = new UtilityDati();
 		lista = ut.leggi(fileName);
