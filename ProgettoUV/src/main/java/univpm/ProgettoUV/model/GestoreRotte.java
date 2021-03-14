@@ -5,6 +5,8 @@ import java.util.Vector;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import univpm.ProgettoUV.controller.MainController;
+import univpm.ProgettoUV.controller.StatsController;
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.exception.WrongFilterException;
 import univpm.ProgettoUV.exception.WrongRangeException;
@@ -12,7 +14,21 @@ import univpm.ProgettoUV.stats.MinMax;
 import univpm.ProgettoUV.stats.Statistiche;
 import univpm.ProgettoUV.stats.StatsService;
 
+/**
+ * <p> Elabora i dati da visualizzare in {@link MainController}
+ * e {@link StatsController}
+ * @author Giangrossi Antonio
+ * @author Di Lorenzo Emanuele
+ *
+ */
+
 public class GestoreRotte {
+	/**
+	 * <p> restituisci lo storico uvi senza applicare statistiche </p>
+	 * @param lat latitudine città selezionata
+	 * @param lon longitudine città selezionata
+	 * @return <code>JSONArray<code> dello storico uvi
+	 */
 	public JSONArray datiNoStats(String lat, String lon) {
 		String message = "";
 		String[] listLat = lat.split(",");
@@ -50,6 +66,12 @@ public class GestoreRotte {
 		}
 		return out;
 	}
+	
+	/**
+	 * <p>visualizza la lista delle città selezionabili. In particolare
+	 * sono state selezionate le prime 100 città italiane in "city.list.json" </p>
+	 * @return <code>JSONArray</p> con nome, stato e coordinate delle città
+	 */
 
 	public JSONArray listaCompleta() {
 		JSONArray obj = null, objOut = new JSONArray();
@@ -76,6 +98,17 @@ public class GestoreRotte {
 		return objOut;
 
 	}
+	
+	/**
+	 * <p> Visualizza le statistiche </p>
+	 * @param lati elenco latitudini città selezionate separate da ","
+	 * @param longi elenco longitudini città selezionate separate da ","
+	 * @param range numero di giorni su cui effettuare le statistiche. Il valore di Default è 1
+	 * @param filter opzione per filtrare tra le città con la media più alta ("max")
+	 * o bassa ("min"). Se si seleziona "no" verranno restituite le statistiche
+	 * di tutte le città selezionate. Il valore di default è "no"
+	 * @return <code>JSONArray</code> con le statistiche delle città
+	 */
 	
 	public JSONArray stats(String lati, String longi, int range, String filter) {
 		String message = "";

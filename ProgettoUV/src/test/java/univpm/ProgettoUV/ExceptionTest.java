@@ -1,20 +1,24 @@
 package univpm.ProgettoUV;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import univpm.ProgettoUV.controller.StatsController;
 import univpm.ProgettoUV.exception.WrongCoordinatesException;
 import univpm.ProgettoUV.exception.WrongFilterException;
 import univpm.ProgettoUV.exception.WrongRangeException;
 import univpm.ProgettoUV.model.APICoordinates;
-import univpm.ProgettoUV.model.GestoreRotte;
 import univpm.ProgettoUV.stats.Statistiche;
 import univpm.ProgettoUV.stats.StatsService;
+
+/**
+ * Test per verificare il corretto utilizzo delle eccezioni
+ * @author Di Lorenzo Emanuele
+ * @author Giangrossi Antonio
+ *
+ */
 
 public class ExceptionTest {
 	private String lat;
@@ -34,7 +38,13 @@ public class ExceptionTest {
 
 	}
 	
-	
+	/**
+	 * Test per l'eccezione WrongCoordinatesException. 
+	 * Nel primo caso la longitudine inserita corrisponde
+	 * a una città, ma non la latitudine. Nel secondo caso
+	 * sono stati inseriti valori non numerici
+	 * @throws WrongCoordinatesException
+	 */
 	@Test
 	void testWrongCoordinates() throws WrongCoordinatesException{
 	assertThrows(WrongCoordinatesException.class, () -> {
@@ -49,6 +59,13 @@ public class ExceptionTest {
 	}) ;
 	
 	}
+	
+	/**
+	 * Test per l'eccezione WrongFilterException. L'espressione condizionale
+	 * per il verificarsi dell'eccezione è stata testata con valori inaccettabili
+	 * per il parametro "filter"
+	 * @throws WrongFilterException
+	 */
 	
 	@Test
 	void testWrongFilter() throws WrongFilterException{
@@ -87,6 +104,13 @@ public class ExceptionTest {
 
 	
 	}
+	
+	/**
+	 * Test per l'eccezione WrongRangeException. L'espressione condizionale
+	 * per il verificarsi dell'eccezione è stata testata con un valore negativo per il range
+	 * @throws WrongFilterException
+	 */
+	
 	
 	@Test 
 	void testWrongRange() throws WrongRangeException{

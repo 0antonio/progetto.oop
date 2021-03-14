@@ -6,7 +6,17 @@ import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * <p> Classe per aggiornare il file "listaValori.json" </p>
+ * @author Giangrossi Antonio
+ * @author Di Lorenzo Emanuele
+ *
+ */
 public class StampaLista extends UtilityDati {
+	/**
+	 * <p> metodo per aggiornare il file "listaValori.json"
+	 * @return <code>JSONArray</code> contenente i dati di "city.list.json"
+	 */
 
 	public JSONArray stampa() {
 		JSONArray obj = null;

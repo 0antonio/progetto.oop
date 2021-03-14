@@ -33,7 +33,7 @@ public class Statistiche implements StatsService {
 	/**
 	 * trova i valori UV delle città desiderate in un determinato periodo nel file listaValori
 	 * 
-	 * @param numGiorni indica il periodo scelto dall'utente per fare le statistiche
+	 * @param numGiorni indica il range di giorni scelto dall'utente per fare le statistiche
 	 * 
 	 */
 	
@@ -75,6 +75,7 @@ public class Statistiche implements StatsService {
 		ultimoTempo = tempo[kCont];	
 		indiceUltimoTempo = kCont;
 	}
+	
 	
 	@Override
 	public JSONArray generaStats(long id) { // genera le statistiche per la città di cui fornisco l'id

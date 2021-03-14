@@ -30,17 +30,18 @@ public interface StatsService {
 	 * ritorna l'indice dell'array 
 	 * nel quale si trova la città con valore "id"
 	 * 
-	 * @param id indica l'id della città
+	 * @param id della città selezionata
 	 * 
-	 * 
-	 * @return un <code>int</code> che indica l'indice
+	 * @return un <code>int</code> che indica l'indice con cui è stata salvata
+	 * localmente la città selezionata
 	 */
 	public abstract int trovaIndice(long id);
 
 	/**
 	 * ritorna il valore massimo del range inserito
 	 * 
-	 * @param periodo indica il numero di giorni 
+	 * @param periodo array di <code>double</code> contenente i valori uvi selezionati 
+	 * in un certo periodo 
 	 * 
 	 * 
 	 * @return un <code>double</code> che indica il valore massimo
@@ -50,8 +51,8 @@ public interface StatsService {
 	/**
 	 * ritorna il valore minimo del range inserito
 	 * 
-	 * @param periodo indica il numero di giorni 
-	 * 
+	 * @param periodo array di <code>double</code> contenente i valori uvi selezionati 
+	 * in un certo periodo 
 	 * 
 	 * @return un <code>double</code> che indica il valore minimo
 	 */
@@ -61,8 +62,8 @@ public interface StatsService {
 	/**
 	 * ritorna la media del range inserito
 	 * 
-	 * @param periodo indica il numero di giorni 
-	 * 
+	 * @param periodo array di <code>double</code> contenente i valori uvi selezionati 
+	 * in un certo periodo 
 	 * 
 	 * @return un <code>double</code> che indica la media
 	 */
@@ -72,8 +73,8 @@ public interface StatsService {
 	/**
 	 * ritorna la varianza del range inserito
 	 * 
-	 * @param periodo indica il numero di giorni 
-	 * 
+	 * @param periodo array di <code>double</code> contenente i valori uvi selezionati 
+	 * in un certo periodo 
 	 * 
 	 * @return un <code>double</code> che indica la varianza
 	 */
@@ -82,7 +83,7 @@ public interface StatsService {
 	/**
 	 * ritorna un JSONArray che converte i dt in una data
 	 * 
-	 * @param id indica l'indice della città
+	 * @param id id della città selezionata
 	 * 
 	 * 
 	 * @return un <code>JSONArray</code> che fa la conversione del tempo

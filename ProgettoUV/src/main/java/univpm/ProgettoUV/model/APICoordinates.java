@@ -13,8 +13,25 @@ import univpm.ProgettoUV.exception.WrongCoordinatesException;
 
 import org.json.simple.parser.JSONParser;
 
+/**
+ * <p> clasee che gestisce le chiamate API a https://api.openweathermap.org
+ * e manipola il JSONArray contenuto in "city.list.json" </p>
+ * 
+ * @author Giangrossi Antonio
+ * @author Di Lorenzo Emanuele
+ *
+ */
+
 public class APICoordinates {
 	private static String filename = "city.list.json";	
+	
+	/**
+	 * <p> gestisce la chimata API </p>
+	 * @param lat latitudine città
+	 * @param lon longitudine città
+	 * @return <code>JSONArray</code> contenente le previsioni uvi per la
+	 * città selezionata
+	 */
 	
 	public static JSONArray getCoordinates(double lat,double lon) {
 		String url = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+ "&lon="+lon +"&exclude=minutely,daily&appid=67d40513b0e3e715b6cec6f7e02d354d";
@@ -67,6 +84,11 @@ public class APICoordinates {
 
 	}
 	
+	/**
+	 * <p> legge il file "city.list.json" </p>
+	 * @return <code>JSONArray</code> contenente i dati di "city.list.json"
+	 */
+	
 	public static JSONArray caricaArray() {
 		JSONParser jsonParser = new JSONParser();
 		JSONArray cityList = null;
@@ -87,6 +109,18 @@ public class APICoordinates {
 		return cityList;
 	}
 	
+	/**
+	 * 
+	 * <p>
+	 * trova il nome di una città date le sue coordinate
+	 * </p>
+	 * @param ja <code>JSONArray</code> contenente i dati di "city.list.json"
+	 * @param lat latitudine città selezionata
+	 * @param lon longitudine città selezionata
+	 * @return nome della città
+	 */
+	
+	
 	public static String getCityname(JSONArray ja,String lat,String lon) {
 		//Get city object within list
 		String name="";
@@ -106,6 +140,16 @@ public class APICoordinates {
 		return name;
 	}
 	
+	/**
+	 * <p>
+	 * trova l'id di una città date le sue coordinate
+	 * </p>
+	 * @param ja <code>JSONArray</code> contenente i dati di "city.list.json"
+	 * @param lat latitudine città selezionata
+	 * @param lon longitudine città selezionata
+	 * @return id città selezionata
+	 * @throws WrongCoordinatesException
+	 */
 	
 public static Long getCityId(JSONArray ja,String lat,String lon) throws WrongCoordinatesException {
 		boolean trovato=false;
@@ -131,6 +175,14 @@ public static Long getCityId(JSONArray ja,String lat,String lon) throws WrongCoo
 	}
 
 
+/**
+ * <p> trova la latitudine conoscendo nome e stato della città </p>
+ * @param ja <code>JSONArray</code> contenente i dati di "city.list.json"
+ * @param nameCity nome città selezionata
+ * @param country stato città selezionata
+ * @return latitudine città selezionata
+ * @throws WrongCoordinatesException
+ */
 	
 	public static double getCitylat(JSONArray ja,String nameCity,String country) throws WrongCoordinatesException {
 		//Get city object within list
@@ -150,6 +202,16 @@ public static Long getCityId(JSONArray ja,String lat,String lon) throws WrongCoo
 		return lat;
 	}
 	
+	/**
+	 * <p> trova la longitudine conoscendo nome e stato della città </p>
+	 * @param ja  <code>JSONArray</code> contenente i dati di "city.list.json"
+	 * @param nameCity nome città selezionata
+	 * @param country stato città selezionata
+	 * @return longitudine città selezionata
+	 * @throws WrongCoordinatesException
+	 */
+		
+	
 	public static double getCitylon(JSONArray ja,String nameCity,String country) throws WrongCoordinatesException {
 		//Get city object within list
 		double lon=0;
@@ -168,6 +230,15 @@ public static Long getCityId(JSONArray ja,String lat,String lon) throws WrongCoo
 		if (lon == 0) throw new WrongCoordinatesException();
 		return lon;
 	}
+	
+	/**
+	 * <p> restituisce i valori uvi conoscendo nome e stato della città </p>
+	 * @param name nome città selezionata
+	 * @param country stato città selezionata
+	 * @return storico uvi città selezionata
+	 * @throws WrongCoordinatesException
+	 */
+	
 	public static JSONArray getValues(String name, String country) throws WrongCoordinatesException{
 		double lat = APICoordinates.getCitylat(APICoordinates.caricaArray(),name,country);
 		double lon = APICoordinates.getCitylat(APICoordinates.caricaArray(),name,country);
