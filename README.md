@@ -38,15 +38,28 @@ Tutte le rotte sono utilizzabili con la chimata <b> GET </b>. Per verificarne il
 
 <b>1. Lista città disponibili: /listaCittà </b>
 
+![Screenshot (32)](https://user-images.githubusercontent.com/58080242/111179695-9bd18200-85ac-11eb-9a3c-2eeb9562046c.png)
+
 L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> : Verranno visualizzati nome e coordinate delle 100 città italiane presenti nell'archivio dati
 
 <b>2. Visualizzazione dati storici: /coorCittà </b>
+
+![coorCitta](https://user-images.githubusercontent.com/58080242/111179830-b99ee700-85ac-11eb-8d7e-00f044c3b6d2.png)
+![coorCitta(1)](https://user-images.githubusercontent.com/58080242/111179842-bc014100-85ac-11eb-86ad-ae9e51c36d31.png)
+
 Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di più città contemporaneamente. La richiesta va fatta inserendo due parametri obbligatori: <b>lat</b> e <b>lon</b>. Essi accettano una lista di valori separati da virgola.
 
 <b>3. Visualizzazione statistiche storiche: /stats </b>
+![Screenshot (41)](https://user-images.githubusercontent.com/58080242/111179917-cfaca780-85ac-11eb-9122-6c401ea7cf31.png)
+![Screenshot (42)](https://user-images.githubusercontent.com/58080242/111179924-d0ddd480-85ac-11eb-8348-5f762e47fcea.png)
+![Screenshot (43)](https://user-images.githubusercontent.com/58080242/111179927-d20f0180-85ac-11eb-93aa-f975fb3915a9.png)
+
 
 I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta prende in ingresso quttro parametri: <b>lat</b> e <b>lon</b> sono parametri obbligatori ed accettano una lista di valori separati da virgola. Un altro parametro è <b>range</b>, che richiede il numero di giorni su cui effettuare le statistiche (ad esempio giornaliera o di 3 giorni) ed ha valore di default pari a 1.
  L'ultimo parametro è <b>filter</b>, che richiede se si vuole filtrare sul massimo della media, con il valore <i>max</>, o sul minimo col valore <i>min</i>, oppure se non si vuole filtrare tra le varie città è possibile inserire il valore <i>no</i>, che è il valore di default. 
  
  <b>4. Aggiornamento archivio: /aggiorna </b>
+ 
+ ![aggiorna](https://user-images.githubusercontent.com/58080242/111179966-daffd300-85ac-11eb-9e8c-40333dd299f4.png)
+
 Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni.
