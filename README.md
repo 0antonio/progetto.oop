@@ -25,7 +25,7 @@ Le <b>classi principali</b> sono:
 
 <i> Statistiche.java </i> e <i> MinMax.java </i> che gestiscono le statistiche
  
- Sono state implementate 3 eccezioni per gestire 3 tipi di errore:
+ Sono state implementate 3 <b>eccezioni </b> per gestire 3 tipi di errore:
  
  <i> WrongCoordinatesException </i> se l'utente inserisce delle coordinate che non esistono nell'archivio
 
