@@ -27,7 +27,7 @@ public class GestoreRotte {
 	 * <p> restituisci lo storico uvi senza applicare statistiche </p>
 	 * @param lat latitudine città selezionata
 	 * @param lon longitudine città selezionata
-	 * @return <code>JSONArray<code> dello storico uvi
+	 * @return <code>JSONArray</code> dello storico uvi
 	 */
 	public JSONArray datiNoStats(String lat, String lon) {
 		String message = "";
@@ -70,7 +70,7 @@ public class GestoreRotte {
 	/**
 	 * <p>visualizza la lista delle città selezionabili. In particolare
 	 * sono state selezionate le prime 100 città italiane in "city.list.json" </p>
-	 * @return <code>JSONArray</p> con nome, stato e coordinate delle città
+	 * @return <code>JSONArray</code> con nome, stato e coordinate delle città
 	 */
 
 	public JSONArray listaCompleta() {

@@ -15,7 +15,11 @@ import org.json.simple.JSONObject;
 public class MinMax {
 	private JSONArray statistiche;
 	private double[][] mediaMatrix; // matrice dove la riga indica la città i-esima e la colonna il periodo j-esimo
-
+/**
+ * Costrutture della classe MinMax
+ * @param statistiche <code>JSONArray </code> contenente le statistiche elaborate
+ * con la classe Statistiche
+ */
 	public MinMax(JSONArray statistiche) {
 		this.statistiche = statistiche;
 
@@ -33,24 +37,24 @@ public class MinMax {
 	
 	public JSONArray getMinMax(String operatore) {
 		JSONArray out = new JSONArray();
-		JSONArray statsCittà = (JSONArray) ((JSONObject) statistiche.get(0)).get("stats");
-		String[] nome = new String[statsCittà.size()];
-		double[] valore = new double[statsCittà.size()];
-		for (int i = 0; i < statsCittà.size(); i++) { // inizializzo con i valori della prima città
+		JSONArray statsCitta = (JSONArray) ((JSONObject) statistiche.get(0)).get("stats");
+		String[] nome = new String[statsCitta.size()];
+		double[] valore = new double[statsCitta.size()];
+		for (int i = 0; i < statsCitta.size(); i++) { // inizializzo con i valori della prima città
 			nome[i] = (String) ((JSONObject) statistiche.get(0)).get("name");
-			valore[i] = (double) ((JSONObject) statsCittà.get(i)).get("media");
+			valore[i] = (double) ((JSONObject) statsCitta.get(i)).get("media");
 		}
 		if (operatore.equals("max")) {
 			for (int i = 1; i < statistiche.size(); i++) {
-				JSONArray statsCittàI = (JSONArray) ((JSONObject) statistiche.get(i)).get("stats"); // prendo le
+				JSONArray statsCittaI = (JSONArray) ((JSONObject) statistiche.get(i)).get("stats"); // prendo le
 																									// statistiche
 																									// dell'i-esima
 																									// città
-				for (int j = 0; j < statsCittà.size(); j++) {
-					double tmp = (double) ((JSONObject) statsCittàI.get(j)).get("media");
+				for (int j = 0; j < statsCitta.size(); j++) {
+					double tmp = (double) ((JSONObject) statsCittaI.get(j)).get("media");
 					if (tmp > valore[j]) {
 						nome[j] = (String) ((JSONObject) statistiche.get(i)).get("name");
-						valore[j] = (double) ((JSONObject) statsCittàI.get(j)).get("media");
+						valore[j] = (double) ((JSONObject) statsCittaI.get(j)).get("media");
 					}
 				}
 
@@ -59,22 +63,22 @@ public class MinMax {
 
 		if (operatore.equals("min")) {
 			for (int i = 1; i < statistiche.size(); i++) {
-				JSONArray statsCittàI = (JSONArray) ((JSONObject) statistiche.get(i)).get("stats"); // prendo le
+				JSONArray statsCittaI = (JSONArray) ((JSONObject) statistiche.get(i)).get("stats"); // prendo le
 																									// statistiche
 																									// dell'i-esima
 																									// città
-				for (int j = 0; j < statsCittà.size(); j++) {
-					double tmp = (double) ((JSONObject) statsCittàI.get(j)).get("media");
+				for (int j = 0; j < statsCitta.size(); j++) {
+					double tmp = (double) ((JSONObject) statsCittaI.get(j)).get("media");
 					if (tmp < valore[j]) {
 						nome[j] = (String) ((JSONObject) statistiche.get(i)).get("name");
-						valore[j] = (double) ((JSONObject) statsCittàI.get(j)).get("media");
+						valore[j] = (double) ((JSONObject) statsCittaI.get(j)).get("media");
 					}
 				}
 
 			}
 		}
-		JSONObject[] obj = new JSONObject[statsCittà.size()];
-		for (int i = 0; i < statsCittà.size(); i++) {
+		JSONObject[] obj = new JSONObject[statsCitta.size()];
+		for (int i = 0; i < statsCitta.size(); i++) {
 			obj[i] = new JSONObject();
 			obj[i].put("name", nome[i]);
 			obj[i].put("media", valore[i]);

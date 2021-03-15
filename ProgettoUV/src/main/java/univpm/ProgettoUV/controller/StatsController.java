@@ -47,9 +47,20 @@ public class StatsController {
 	 */
 	
 	
+	/**
+	 * 
+	 * @param lati elenco latitudine delle città, separato da virgole
+	 * @param longi elenco longitudine delle città, separato da virgola
+	 * @param range numero di giorni su cui effettuare le statistiche
+	 * @param filter parametro per la scelta del filtraggio, tra 3 opzioni: min, max e no
+	 * @return Statistiche
+	 * @throws WrongCoordinatesException
+	 * @throws WrongRangeException
+	 * @throws WrongFilterException
+	 */
 	
 	@GetMapping(value = "/stats", produces = "application/json")
-	public JSONArray restituisciElenco2(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
+	public JSONArray restituisciStats(@RequestParam("lat") String lati, @RequestParam("lon") String longi,
 			@RequestParam(value = "range", defaultValue = "1") int range,
 			@RequestParam(value = "filter", defaultValue = "no") String filter)
 			throws WrongCoordinatesException, WrongRangeException, WrongFilterException {

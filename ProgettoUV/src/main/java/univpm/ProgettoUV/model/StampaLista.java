@@ -33,7 +33,7 @@ public class StampaLista extends UtilityDati {
 		obj = leggi("city.list.json");
 
 		JSONArray objOld = leggi("listaValori.json"); // copia il file vecchio in un array
-		Set<String> cittàPassate = new HashSet<String>();
+		Set<String> cittaPassate = new HashSet<String>();
 		JSONArray timeAndVal = new JSONArray();
 		int j = 0;
 		String italia = "IT";
@@ -52,8 +52,8 @@ public class StampaLista extends UtilityDati {
 			paese = (String) cityObject.get("country");
 			name = (String) cityObject.get("name");
 
-			if (paese.equals(italia) && contaIT < 100 && (!cittàPassate.contains(name))) {
-				cittàPassate.add(name);
+			if (paese.equals(italia) && contaIT < 100 && (!cittaPassate.contains(name))) {
+				cittaPassate.add(name);
 				tmp[j] = new JSONObject();
 				tmp[j].put("id", ID);
 

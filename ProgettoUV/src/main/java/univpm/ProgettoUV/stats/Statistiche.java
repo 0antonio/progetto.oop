@@ -23,7 +23,7 @@ public class Statistiche implements StatsService {
 	private JSONArray lista; // tutti i valori di listaValori
 	private int numGiorni; //numGiorni è il numero di giorni su cui effettuare le statistiche, scelto dall'utente
 	private int lengthVal; // numero di valori acquisiti da openweather
-	private JSONObject[] città; // array in cui l'i-esimo elemento è il JSONObject della città, il quale ha chiavi "values", "name" e "id"
+	private JSONObject[] citta; // array in cui l'i-esimo elemento è il JSONObject della città, il quale ha chiavi "values", "name" e "id"
 	private JSONArray[] listaValues; // array in cui l'i-esimo elemento è il JSONArray "values" dell'i-esima città
 	private long[] tempo; // vettore di timestamps
 	private long ultimoTempo; //timestapm che indica la mezzanotte più recente
@@ -42,17 +42,17 @@ public class Statistiche implements StatsService {
 		UtilityDati ut = new UtilityDati();
 		lista = ut.leggi(fileName);
 		this.numGiorni = numGiorni;
-		città = new JSONObject[lista.size()];
+		citta = new JSONObject[lista.size()];
 		listaValues = new JSONArray[lista.size()];
 		// ciclo sulle città
 		for(int i =0; i<lista.size();i++) {
-			città[i] = (JSONObject) lista.get(i);
+			citta[i] = (JSONObject) lista.get(i);
 			if (i==0) { // entra solo una volta nel ciclo
-				lengthVal = ((JSONArray) città[0].get("values")).size();
+				lengthVal = ((JSONArray) citta[0].get("values")).size();
 				tempo = new long[lengthVal];
 				uvi = new double[lista.size()][lengthVal];
 			}
-			listaValues[i] = (JSONArray) città[i].get("values");
+			listaValues[i] = (JSONArray) citta[i].get("values");
 			
 			for(int j=0;j<lengthVal;j++) {
 				uvi[i][j] = ((Number) ((JSONObject) ((JSONArray) listaValues[i]).get(j)).get("uvi")).doubleValue();
@@ -60,9 +60,9 @@ public class Statistiche implements StatsService {
 			}
 		}
 		
-		JSONArray valoriPrimaCittà = listaValues[0];
+		JSONArray valoriPrimaCitta = listaValues[0];
 		for(int i=0;i<lengthVal;i++) {
-			tempo[i] = (long) ((JSONObject) valoriPrimaCittà.get(i)).get("dt");
+			tempo[i] = (long) ((JSONObject) valoriPrimaCitta.get(i)).get("dt");
 		}
 		int kCont = 0;
 		for(int k = (lengthVal-1); k>=0;k--) {
@@ -105,8 +105,8 @@ public class Statistiche implements StatsService {
 	@Override
 	public int trovaIndice(long id) { // trova in quale posizione dell'array si trova la città con valore "id"
 		int indice = 0;
-		for(int i = 0; i<città.length ;i++) {
-			if(((long) città[i].get("id"))==id) {
+		for(int i = 0; i<citta.length ;i++) {
+			if(((long) citta[i].get("id"))==id) {
 				indice = i;
 				break;
 			}
