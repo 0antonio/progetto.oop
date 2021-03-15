@@ -1,2 +1,2 @@
 # progetto.oop
-<p> inizio </p>
+inizio 
