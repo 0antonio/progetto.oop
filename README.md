@@ -83,5 +83,5 @@ Sono stati effettuati 3 test per le parti principali del programma:
 # AUTORI
 
 Il programma è stato sviluppato da:
-Giangrossi Antonio
+Giangrossi Antonio, 
 Di Lorenzo Emanuele
