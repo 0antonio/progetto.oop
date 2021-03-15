@@ -36,17 +36,17 @@ Le <b>classi principali</b> sono:
 # ROTTE
 Tutte le rotte sono utilizzabili con la chimata <b> GET </b>. Per verificarne il funzionamento esse sono state chiamate da Postman attraverso la porta localhost:8080
 
-<b> Lista città disponibili: /listaCittà </b>
+<b>1. Lista città disponibili: /listaCittà </b>
 
 L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> : Verranno visualizzati nome e coordinate delle 100 città italiane presenti nell'archivio dati
 
-<b> Visualizzazione dati storici: /coorCittà </b>
+<b>2. Visualizzazione dati storici: /coorCittà </b>
 Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di più città contemporaneamente. La richiesta va fatta inserendo due parametri obbligatori: <b>lat</b> e <b>lon</b>. Essi accettano una lista di valori separati da virgola.
 
-<b> Visualizzazione statistiche storiche: /stats </b>
+<b>3. Visualizzazione statistiche storiche: /stats </b>
 
 I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta prende in ingresso quttro parametri: <b>lat</b> e <b>lon</b> sono parametri obbligatori ed accettano una lista di valori separati da virgola. Un altro parametro è <b>range</b>, che richiede il numero di giorni su cui effettuare le statistiche (ad esempio giornaliera o di 3 giorni) ed ha valore di default pari a 1.
  L'ultimo parametro è <b>filter</b>, che richiede se si vuole filtrare sul massimo della media, con il valore <i>max</>, o sul minimo col valore <i>min</i>, oppure se non si vuole filtrare tra le varie città è possibile inserire il valore <i>no</i>, che è il valore di default. 
  
- <b> Aggiornamento archivio: /aggiorna </b>
+ <b>4. Aggiornamento archivio: /aggiorna </b>
 Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni.
