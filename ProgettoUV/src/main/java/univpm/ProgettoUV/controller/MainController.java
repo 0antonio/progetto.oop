@@ -24,35 +24,6 @@ import univpm.ProgettoUV.model.*;
 
 @RestController
 public class MainController {
-	/*
-	@GetMapping(value = "/nomeCittà", produces = "application/json")
-    public String exampleMethod(@RequestParam("name") String name, @RequestParam("country") String country)
-            throws WrongCoordinatesException {
-        String message = "";
-        String[] list = name.split(",");
-        String[] countrylist = country.split(",");
-
- 
-
-        int i = 0;
-        for (String element : list) {
-            String countryelement = countrylist[i];
-            i = i++;
-            double lat = APICoordinates.getCitylat(APICoordinates.caricaArray(), element, countryelement);
-            double lon = APICoordinates.getCitylat(APICoordinates.caricaArray(), element, countryelement);
-
- 
-
-            message += "\n" + element + "  " + countryelement + "\n";
-            message += APICoordinates.getCoordinates(lat, lon);
-
- 
-
-        }
-        // return APICoordinates.getCoordinates(lat,lon).size();
-        return message;
-    }*/
-
 	/**
 	 * Questo metodo permette di aggiornare la lista di dati delle citta prese in considerazione
 	 * 
