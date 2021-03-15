@@ -9,6 +9,6 @@
 ![secondo diagramma sequenze](https://user-images.githubusercontent.com/58080242/111168545-72abf400-85a2-11eb-9e31-b66238d0893b.jpg)
 
 <h2> Class Digram </h2>
-![diagramma classi 1](https://user-images.githubusercontent.com/58080242/111168581-7dff1f80-85a2-11eb-97dd-48318090bf05.png)
+
 
 
