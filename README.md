@@ -67,6 +67,7 @@ Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggi
 
 # TEST
 Sono stati effettuati 3 test per le parti principali del programma:
+
 <i> APICoordinatesTest.java</i> è stato usato per verificare la correttezza nella gestione degli attributi delle città
 <i> ExceptionTest.java</i> è stato usato per verificare la correttezza nell'intercettamento di eccezioni da parte del programma
 <i> TestStatistiche.java </i> è stato usato per verificare la correttezza delle statistiche considerate. In questo caso, visto che il file contenente i dati può cambiare a causa degli aggiornamenti, i test sono stati effettuati su i primi giorni (i più vecchi) contenuti nell'archivio, i quali rimangono inalterati anche dopo un aggiornamento
