@@ -64,3 +64,10 @@ I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta pren
  ![aggiorna](https://user-images.githubusercontent.com/58080242/111179966-daffd300-85ac-11eb-9e8c-40333dd299f4.png)
 
 Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni.
+
+# TEST
+Sono stati effettuati 3 test per le parti principali del programma:
+<i> APICoordinatesTest.java</i> è stato usato per verificare la correttezza nella gestione degli attributi delle città
+<i> ExceptionTest.java</i> è stato usato per verificare la correttezza nell'intercettamento di eccezioni da parte del programma
+<i> TestStatistiche.java </i> è stato usato per verificare la correttezza delle statistiche considerate. In questo caso, visto che il file contenente i dati può cambiare a causa degli aggiornamenti, i test sono stati effettuati su i primi giorni (i più vecchi) contenuti nell'archivio, i quali rimangono inalterati anche dopo un aggiornamento
+
