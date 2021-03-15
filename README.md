@@ -23,7 +23,7 @@ Le classi principali sono:
 
 <i> StampaLista.java </i> che serve a riscrivere e aggiornare il file "listaValori.json".
 
-<i> Statistiche.java </i> e <i> MinMax.java </> che gestiscono le statistiche
+<i> Statistiche.java </i> e <i> MinMax.java </i> che gestiscono le statistiche
  
  Sono state implementate 3 eccezioni per gestire 3 tipi di errore:
  
