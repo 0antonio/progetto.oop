@@ -5,6 +5,7 @@
 <b>Use Case Diagram</b> 
 ![diagramma casi d'uso](https://user-images.githubusercontent.com/58080242/111167621-99b5f600-85a1-11eb-8152-5d916a05ed8a.jpg)
 questo è il diagramma
+
 <b>Sequence Diagram</b>
 ![primo diagramma sequenze](https://user-images.githubusercontent.com/58080242/111168518-6cb61300-85a2-11eb-9a18-3abd2bbb3f06.png)
 ![secondo diagramma sequenze](https://user-images.githubusercontent.com/58080242/111168545-72abf400-85a2-11eb-9e31-b66238d0893b.jpg)
