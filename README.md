@@ -33,3 +33,8 @@ Le <b>classi principali</b> sono:
 
 <i> WrongRangeException </i> se il range selezionato per le statistiche è minore o uguale a zero oppure se è maggiore del numero di giorni salvati presenti nell'archivio.
 
+# ROTTE
+Tutte le rotte sono utilizzabili con la chimata GET. Per verificarne il funzionamento esse sono state chiamate da Postman attraverso la porta localhost:8080
+<b> Lista città disponibili </b>
+
+L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> : Verranno visualizzati nome e coordinate delle 100 città italiane presenti nell'archivio dati
