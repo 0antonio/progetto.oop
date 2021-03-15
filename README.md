@@ -29,9 +29,15 @@ Le <b>classi principali</b> sono:
  
  <i> WrongCoordinatesException </i> se l'utente inserisce delle coordinate che non esistono nell'archivio
 
+![coordinate](https://user-images.githubusercontent.com/58080242/111182361-21eec800-85af-11eb-9baf-1af4be6b83a0.png)
+
 <i> WrongFilterException </i> se l'opzione selezionata per il filtro è inesistente
 
+![filter](https://user-images.githubusercontent.com/58080242/111182394-27e4a900-85af-11eb-8c35-68c0472dfa2a.png)
+
 <i> WrongRangeException </i> se il range selezionato per le statistiche è minore o uguale a zero oppure se è maggiore del numero di giorni salvati presenti nell'archivio.
+
+![range](https://user-images.githubusercontent.com/58080242/111182460-3763f200-85af-11eb-9cee-32ad3d8d775a.png)
 
 # ROTTE
 Tutte le rotte sono utilizzabili con la chimata <b> GET </b>. Per verificarne il funzionamento esse sono state chiamate da Postman attraverso la porta localhost:8080
