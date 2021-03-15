@@ -17,7 +17,7 @@ Le sequenze del sistema prevedono uno scambio di informazioni tra il client, il 
 <b> Class Digram </b>
 ![diagramma classi 1](https://user-images.githubusercontent.com/58080242/111168581-7dff1f80-85a2-11eb-97dd-48318090bf05.png)
 
-Le classi principali sono:
+Le <b>classi principali</b> sono:
 
 <i> APICoordinates.java </i> che gestisce le chiamate API.
 
