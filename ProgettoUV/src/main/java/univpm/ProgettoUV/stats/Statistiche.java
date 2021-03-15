@@ -88,7 +88,7 @@ public class Statistiche implements StatsService {
 		for(int i = 0; i<numPeriodi;i++) {
 			for(int j = 0; j < 24*numGiorni; j++) {
 
-				uviInPeriodo[j] = uvi[indice][indiceUltimoTempo-j-i*24*numGiorni]; //???
+				uviInPeriodo[j] = uvi[indice][indiceUltimoTempo-j-i*24*numGiorni]; 
 			}
 			tmp.put("periodo numero", i); // dal più alto al più basso, il periodo 100 è antico
 			tmp.put("media", media(uviInPeriodo));
