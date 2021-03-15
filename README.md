@@ -50,6 +50,7 @@ L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> :
 Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di più città contemporaneamente. La richiesta va fatta inserendo due parametri obbligatori: <b>lat</b> e <b>lon</b>. Essi accettano una lista di valori separati da virgola.
 
 <b>3. Visualizzazione statistiche storiche: /stats </b>
+
 ![Screenshot (41)](https://user-images.githubusercontent.com/58080242/111179917-cfaca780-85ac-11eb-9122-6c401ea7cf31.png)
 ![Screenshot (42)](https://user-images.githubusercontent.com/58080242/111179924-d0ddd480-85ac-11eb-8348-5f762e47fcea.png)
 ![Screenshot (43)](https://user-images.githubusercontent.com/58080242/111179927-d20f0180-85ac-11eb-93aa-f975fb3915a9.png)
