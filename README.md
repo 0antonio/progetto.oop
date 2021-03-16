@@ -64,7 +64,7 @@ Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di 
  
  ESEMPIO:</b> localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611 
  
- <b>ESEMPIO CON FILTRI:</b> localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=1&filter=max
+ <b>ESEMPIO CON FILTRI:</b> localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=4&filter=max
 
 ![Screenshot (41)](https://user-images.githubusercontent.com/58080242/111179917-cfaca780-85ac-11eb-9122-6c401ea7cf31.png)
 ![Screenshot (42)](https://user-images.githubusercontent.com/58080242/111179924-d0ddd480-85ac-11eb-8348-5f762e47fcea.png)
