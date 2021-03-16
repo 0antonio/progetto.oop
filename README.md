@@ -43,20 +43,28 @@ Le <b>classi principali</b> sono:
 # ROTTE
 Tutte le rotte sono utilizzabili con la chimata <b> GET </b>. Per verificarne il funzionamento esse sono state chiamate da Postman attraverso la porta localhost:8080
 
-<b>1. Lista città disponibili: /listaCittà . ESEMPIO: localhost:8080/listaCittà</b>
+<b>1. Lista città disponibili: /listaCittà 
+ 
+ESEMPIO: localhost:8080/listaCittà</b>
 
 ![Screenshot (32)](https://user-images.githubusercontent.com/58080242/111179695-9bd18200-85ac-11eb-9a3c-2eeb9562046c.png)
 
 L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> : Verranno visualizzati nome e coordinate delle 100 città italiane presenti nell'archivio dati
 
-<b>2. Visualizzazione dati storici: /coorCittà . ESEMPIO: localhost:8080/coorCittà?lon=16.292089,8.70889&lat=39.31089,39.958611</b>
+<b>2. Visualizzazione dati storici: /coorCittà 
+ 
+ ESEMPIO: localhost:8080/coorCittà?lon=16.292089,8.70889&lat=39.31089,39.958611</b>
 
 ![coorCitta](https://user-images.githubusercontent.com/58080242/111179830-b99ee700-85ac-11eb-8d7e-00f044c3b6d2.png)
 ![coorCitta(1)](https://user-images.githubusercontent.com/58080242/111179842-bc014100-85ac-11eb-86ad-ae9e51c36d31.png)
 
 Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di più città contemporaneamente. La richiesta va fatta inserendo due parametri obbligatori: <b>lat</b> e <b>lon</b>. Essi accettano una lista di valori separati da virgola.
 
-<b>3. Visualizzazione statistiche storiche: /stats . ESEMPIO: localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611 ESEMPIO CON FILTRI:localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=1&filter=max</b>
+<b>3. Visualizzazione statistiche storiche: /stats
+ 
+ ESEMPIO: localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611 
+ 
+ ESEMPIO CON FILTRI:localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=1&filter=max</b>
 
 ![Screenshot (41)](https://user-images.githubusercontent.com/58080242/111179917-cfaca780-85ac-11eb-9122-6c401ea7cf31.png)
 ![Screenshot (42)](https://user-images.githubusercontent.com/58080242/111179924-d0ddd480-85ac-11eb-8348-5f762e47fcea.png)
@@ -67,6 +75,8 @@ I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta pren
  L'ultimo parametro è <b>filter</b>, che richiede se si vuole filtrare sul massimo della media, con il valore <i>max</i>, o sul minimo col valore <i>min</i>, oppure se non si vuole filtrare tra le varie città è possibile inserire il valore <i>no</i>, che è il valore di default. 
  
  <b>4. Aggiornamento archivio: /aggiorna </b>
+ 
+ ESEMPIO: localhost:8080/aggiorna
  
  ![aggiorna](https://user-images.githubusercontent.com/58080242/111179966-daffd300-85ac-11eb-9e8c-40333dd299f4.png)
 
