@@ -35,7 +35,7 @@ public class GestoreRotte {
 		String[] listLon = lon.split(",");
 		JSONArray out = new JSONArray(), value = new JSONArray();
 		JSONObject[] tmp = new JSONObject[listLat.length];
-		StatsService object = new Statistiche(1);
+		StatsService object = new Statistiche(1); 
 
 		for (int i = 0; i < listLat.length; i++) {
 			String latElement = listLat[i];
@@ -49,10 +49,25 @@ public class GestoreRotte {
 
 				message = "lat:" + latitudine + " , lon:" + longitudine;
 
+				JSONArray ar = (JSONArray)  object.getData(id);
+				JSONArray valori = new JSONArray();
+				for(int k = 0; k< ar.size(); k++) {
+					JSONObject oggetto = new JSONObject();
+					double raggiUV = (double) ((JSONObject) ar.get(k)).get("uvi");
+					if(raggiUV!=-1.0) {
+					oggetto.put("uvi", raggiUV);}
+					else {
+						oggetto.put("uvi", "DATO ASSENTE");}
+					
+					oggetto.put("data",((JSONObject) ar.get(k)).get("data"));
+					valori.add(oggetto);
+				}
+				
 				tmp[i] = new JSONObject();
 				tmp[i].put("name", name);
 				tmp[i].put("coor:", message);
-				tmp[i].put("valori", object.getData(id));
+				
+				tmp[i].put("valori", valori);
 				out.add(tmp[i]);
 
 			} catch (WrongCoordinatesException e) {

@@ -78,6 +78,16 @@ public class StampaLista extends UtilityDati {
 				for (int cont = 0; cont < valuesOld.size(); cont++) {
 					timeAndValUpdated.add(valuesOld.get(cont));
 				}
+				
+				// qui aggiungo i -1.0
+				for(int cont = 1; cont<(-numDiff); cont++) {
+					JSONObject buffer = new JSONObject();
+					buffer.put("dt", lastTime+3600*cont);
+					buffer.put("uvi", -1.0);
+					timeAndValUpdated.add(buffer);
+				}
+				
+				
 				for (int cont = 0; cont < timeAndVal.size(); cont++) {
 					timeAndValUpdated.add(timeAndVal.get(cont));
 				}
