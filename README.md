@@ -5,7 +5,8 @@
 <b>Use Case Diagram</b> 
 ![diagramma casi d'uso](https://user-images.githubusercontent.com/58080242/111167621-99b5f600-85a1-11eb-8152-5d916a05ed8a.jpg)
 L'utente può visulizzare una lista predefinita contenente i nomi di 100 città itliane e le loro coordinate. Le coordinate possono essere successivamente utilizzate per visualizzare l'intero storico dei dati oppure per visualizzare statistiche che saranno filtrate in base ad un numero di giorni scelto dall'utente ed eventualmente filtrate anche in base al massimo o minimo della media tra tutte le città scelte in ogni periodo mostrato.
-L'amministratore è un attore equivlente ad un server che aggiorna i dati effettuando la chimata ad OpenWeatherMap. L'aggiornamento deve essere effettuato massimo ogni 2 giorni poichè i dati forniti da OpenWeatherMap coprono solo quel lasso di tempo, e in caso contrario ci sarebbe una mancanza di dati.
+L'amministratore è un attore equivlente ad un server che aggiorna i dati effettuando la chimata ad OpenWeatherMap. L'aggiornamento deve essere effettuato massimo ogni 2 giorni poichè i dati forniti da OpenWeatherMap coprono solo quel lasso di tempo, e in caso contrario ci sarebbe una mancanza di dati. In caso di dati mancanti il programma continua a funzionare, ma alcuni dati saranno visualizzati come assenti o parzili. 
+
 
 <b>Sequence Diagram</b>
 ![primo diagramma sequenze](https://user-images.githubusercontent.com/58080242/111168518-6cb61300-85a2-11eb-9a18-3abd2bbb3f06.png)
@@ -42,20 +43,20 @@ Le <b>classi principali</b> sono:
 # ROTTE
 Tutte le rotte sono utilizzabili con la chimata <b> GET </b>. Per verificarne il funzionamento esse sono state chiamate da Postman attraverso la porta localhost:8080
 
-<b>1. Lista città disponibili: /listaCittà </b>
+<b>1. Lista città disponibili: /listaCittà . ESEMPIO: localhost:8080/listaCittà</b>
 
 ![Screenshot (32)](https://user-images.githubusercontent.com/58080242/111179695-9bd18200-85ac-11eb-9a3c-2eeb9562046c.png)
 
 L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> : Verranno visualizzati nome e coordinate delle 100 città italiane presenti nell'archivio dati
 
-<b>2. Visualizzazione dati storici: /coorCittà </b>
+<b>2. Visualizzazione dati storici: /coorCittà . ESEMPIO: localhost:8080/coorCittà?lon=16.292089,8.70889&lat=39.31089,39.958611</b>
 
 ![coorCitta](https://user-images.githubusercontent.com/58080242/111179830-b99ee700-85ac-11eb-8d7e-00f044c3b6d2.png)
 ![coorCitta(1)](https://user-images.githubusercontent.com/58080242/111179842-bc014100-85ac-11eb-86ad-ae9e51c36d31.png)
 
 Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di più città contemporaneamente. La richiesta va fatta inserendo due parametri obbligatori: <b>lat</b> e <b>lon</b>. Essi accettano una lista di valori separati da virgola.
 
-<b>3. Visualizzazione statistiche storiche: /stats </b>
+<b>3. Visualizzazione statistiche storiche: /stats . ESEMPIO: localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611 ESEMPIO CON FILTRI:localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=1&filter=max</b>
 
 ![Screenshot (41)](https://user-images.githubusercontent.com/58080242/111179917-cfaca780-85ac-11eb-9122-6c401ea7cf31.png)
 ![Screenshot (42)](https://user-images.githubusercontent.com/58080242/111179924-d0ddd480-85ac-11eb-8348-5f762e47fcea.png)
@@ -69,7 +70,13 @@ I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta pren
  
  ![aggiorna](https://user-images.githubusercontent.com/58080242/111179966-daffd300-85ac-11eb-9e8c-40333dd299f4.png)
 
-Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni.
+Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni. In caso di mancato aggiornamento entro 2 giorni, l'archivio verrà riempito con valori contrassegnati come dati assenti. Nelle statistiche i dati assenti sono contrassegnati nella chiave <b> Dati archivio </b> come <b>ASSENTI</b>. Se almeno un dato è presente nel periodo considerato, questa chiave indicherà valori <b>PARZIALI</b>
+
+![esempio dato mancante](https://user-images.githubusercontent.com/78969653/111342709-00f3a900-867b-11eb-899c-4351078b3d38.jpg)
+
+![esempio OOP](https://user-images.githubusercontent.com/78969653/111342730-0650f380-867b-11eb-9316-4b01f9e68db0.jpg)
+
+
 
 # TEST
 Sono stati effettuati 3 test per le parti principali del programma:
