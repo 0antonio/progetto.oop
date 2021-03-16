@@ -83,7 +83,6 @@ I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta pren
 Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni. In caso di mancato aggiornamento entro 2 giorni, l'archivio verrà riempito con valori contrassegnati come dati assenti. Nelle statistiche i dati assenti sono contrassegnati nella chiave <b> Dati archivio </b> come <b>ASSENTI</b>. Se almeno un dato è presente nel periodo considerato, questa chiave indicherà valori <b>PARZIALI</b>
 
 ![esempio dato mancante](https://user-images.githubusercontent.com/78969653/111342709-00f3a900-867b-11eb-899c-4351078b3d38.jpg)
-
 ![esempio OOP](https://user-images.githubusercontent.com/78969653/111342730-0650f380-867b-11eb-9316-4b01f9e68db0.jpg)
 
 
