@@ -55,8 +55,7 @@ L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> :
  
  ESEMPIO: </b> localhost:8080/coorCittà?lon=16.292089,8.70889&lat=39.31089,39.958611
 
-![coorCitta](https://user-images.githubusercontent.com/58080242/111179830-b99ee700-85ac-11eb-8d7e-00f044c3b6d2.png)
-![coorCitta(1)](https://user-images.githubusercontent.com/58080242/111179842-bc014100-85ac-11eb-86ad-ae9e51c36d31.png)
+![coorCitta](https://user-images.githubusercontent.com/58080242/111179830-b99ee700-85ac-11eb-8d7e-00f044c3b6d2.png) ![coorCitta(1)](https://user-images.githubusercontent.com/58080242/111179842-bc014100-85ac-11eb-86ad-ae9e51c36d31.png)
 
 Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di più città contemporaneamente. La richiesta va fatta inserendo due parametri obbligatori: <b>lat</b> e <b>lon</b>. Essi accettano una lista di valori separati da virgola.
 
