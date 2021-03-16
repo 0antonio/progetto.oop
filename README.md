@@ -45,7 +45,7 @@ Tutte le rotte sono utilizzabili con la chimata <b> GET </b>. Per verificarne il
 
 <b>1. Lista città disponibili: /listaCittà 
  
-ESEMPIO: localhost:8080/listaCittà</b>
+ESEMPIO: </b> localhost:8080/listaCittà
 
 ![Screenshot (32)](https://user-images.githubusercontent.com/58080242/111179695-9bd18200-85ac-11eb-9a3c-2eeb9562046c.png)
 
@@ -53,7 +53,7 @@ L'elenco delle città disponibili viene tramite la rotta <b> /listaCittà </b> :
 
 <b>2. Visualizzazione dati storici: /coorCittà 
  
- ESEMPIO: localhost:8080/coorCittà?lon=16.292089,8.70889&lat=39.31089,39.958611</b>
+ ESEMPIO: </b> localhost:8080/coorCittà?lon=16.292089,8.70889&lat=39.31089,39.958611
 
 ![coorCitta](https://user-images.githubusercontent.com/58080242/111179830-b99ee700-85ac-11eb-8d7e-00f044c3b6d2.png)
 ![coorCitta(1)](https://user-images.githubusercontent.com/58080242/111179842-bc014100-85ac-11eb-86ad-ae9e51c36d31.png)
@@ -62,9 +62,9 @@ Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di 
 
 <b>3. Visualizzazione statistiche storiche: /stats
  
- ESEMPIO: localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611 
+ ESEMPIO:</b> localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611 
  
- ESEMPIO CON FILTRI:localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=1&filter=max</b>
+ <b>ESEMPIO CON FILTRI:</b> localhost:8080/stats?lon=16.292089,8.70889&lat=39.31089,39.958611&range=1&filter=max
 
 ![Screenshot (41)](https://user-images.githubusercontent.com/58080242/111179917-cfaca780-85ac-11eb-9122-6c401ea7cf31.png)
 ![Screenshot (42)](https://user-images.githubusercontent.com/58080242/111179924-d0ddd480-85ac-11eb-8348-5f762e47fcea.png)
@@ -76,7 +76,7 @@ I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta pren
  
  <b>4. Aggiornamento archivio: /aggiorna </b>
  
- ESEMPIO: localhost:8080/aggiorna
+ <b>ESEMPIO:</b> localhost:8080/aggiorna
  
  ![aggiorna](https://user-images.githubusercontent.com/58080242/111179966-daffd300-85ac-11eb-9e8c-40333dd299f4.png)
 
