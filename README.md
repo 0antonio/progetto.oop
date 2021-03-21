@@ -71,7 +71,7 @@ Con la rotta <b> /coorCittà </b> è possibile richiedere la visualizzazioni di 
 
 
 I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta prende in ingresso quttro parametri: <b>lat</b> e <b>lon</b> sono parametri obbligatori ed accettano una lista di valori separati da virgola. Un altro parametro è <b>range</b>, che richiede il numero di giorni su cui effettuare le statistiche (ad esempio giornaliera o di 3 giorni) ed ha valore di default pari a 1.
- L'ultimo parametro è <b>filter</b>, che richiede se si vuole filtrare sul massimo della media, con il valore <i>max</i>, o sul minimo col valore <i>min</i>, oppure se non si vuole filtrare tra le varie città è possibile inserire il valore <i>no</i>, che è il valore di default. 
+ L'ultimo parametro è <b>filter</b>, che richiede se si vuole filtrare sul massimo della media, con il valore <i>max</i>, o sul minimo col valore <i>min</i>, oppure se non si vuole filtrare tra le varie città è possibile inserire il valore <i>no</i>, che è il valore di default. Le statistiche sono ordinate secondo la chiave <b>"Periodo numero"</b> in ordine dove il valore zero corrisponde alla statistica più vecchia contenuta nell'archivio
  
  <b>4. Aggiornamento archivio: /aggiorna </b>
  
@@ -81,8 +81,9 @@ I dati storici sono  visualizzati dalla rotta <b> /stats </b>. Questa rotta pren
 
 Questa rotta serve per aggioranre l'archivio locale. L'archivio deve essere aggiornato entro due giorni dall'ultimo aggiornamento poichè le previsioni hanno una durata di 2 giorni. In caso di mancato aggiornamento entro 2 giorni, l'archivio verrà riempito con valori contrassegnati come dati assenti. Nelle statistiche i dati assenti sono contrassegnati nella chiave <b> Dati archivio </b> come <b>ASSENTI</b>. Se almeno un dato è presente nel periodo considerato, questa chiave indicherà valori <b>PARZIALI</b>
 
-![esempio dato mancante](https://user-images.githubusercontent.com/78969653/111342709-00f3a900-867b-11eb-899c-4351078b3d38.jpg)
-![esempio OOP](https://user-images.githubusercontent.com/78969653/111342730-0650f380-867b-11eb-9316-4b01f9e68db0.jpg)
+![Screenshot (46)](https://user-images.githubusercontent.com/58080242/111346501-8fb5f500-867e-11eb-8da2-4fabab0e9f94.png)
+![Screenshot (47)](https://user-images.githubusercontent.com/58080242/111346509-92184f00-867e-11eb-8c06-1d723239288c.png)
+
 
 
 
